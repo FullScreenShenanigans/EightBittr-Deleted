@@ -1,4 +1,5 @@
 interface IEightBittrSettings {
+    constantsSource?: any;
     constants?: string[];
     requirements?: any;
 }
@@ -42,22 +43,22 @@ class EightBittr {
      */
     constructor(settings: IEightBittrSettings = {}) {
         var EightBitter: EightBittr = EightBittr.prototype.ensureCorrectCaller(this),
-            constants: string[],
-            requirements: any,
-            i: any;
+            constants: any = settings.constants,
+            constantsSource: any = settings.constantsSource || EightBitter,
+            requirements: any = settings.requirements,
+            i: number;
 
-        // EightBitter.constructor = settings.constructor || EightBittr,
-
-        // Constants, such as unitsize and scale, are always copied first
-        EightBitter.constants = settings.constants;
-        if (EightBitter.constants) {
+        // Constants are always copied first, so resets can use them
+        EightBitter.constants = constants;
+        if (constants) {
             for (i = 0; i < constants.length; i += 1) {
-                EightBitter[constants[i]] = EightBitter.constructor[constants[i]];
+                console.log("Setting", constants[i], constantsSource[constants[i]]);
+                EightBitter[constants[i]] = constantsSource[constants[i]];
             }
         }
 
-        EightBitter.requirements = settings.requirements;
-        if (EightBitter.requirements) {
+        EightBitter.requirements = requirements;
+        if (requirements) {
             if (requirements.global) {
                 if (typeof window !== "undefined") {
                     EightBitter.checkRequirements(window, requirements.global, "global");
@@ -132,7 +133,7 @@ class EightBittr {
         for (i = 0; i < resets.length; i += 1) {
             reset = resets[i];
 
-            if (!EightBitter.hasOwnProperty(reset)) {
+            if (!EightBitter[reset]) {
                 throw new Error(reset + " is missing on a resetting EightBittr.");
             }
 
