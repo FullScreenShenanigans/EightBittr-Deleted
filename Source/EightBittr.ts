@@ -1,6 +1,18 @@
 interface IEightBittrSettings {
-    constants: string[];
-    requirements: any;
+    constants?: string[];
+    requirements?: any;
+}
+
+interface IThing {
+    EightBitter: EightBittr;
+    top: number;
+    right: number;
+    bottom: number;
+    left: number;
+    width: number;
+    height: number;
+    xvel: number;
+    yvel: number;
 }
 
 /**
@@ -13,21 +25,22 @@ interface IEightBittrSettings {
  * @author "Josh Goldberg" <josh@fullscreenmario.com>
  */
 class EightBittr {
-    public customs: string[];
+    protected customs: any;
+
+    protected constants: string[];
+
+    protected requirements: any;
+
+    protected unitsize: number;
 
     /**
      * EightBittr constructor. Settings arguments are used to initialize 
      * "constant" values and check for requirements.
      * 
      * @constructor
-     * @param {Object} [settings]   An Object containing all other arguments.
-     * @param {String[]} [constants]   The names of attributes that should exist 
-     *                                 in both the EightBittr constructor and 
-     *                                 child instances.
-     * @param {Object} [requirements]   A mapping of required settings that must
-     *                                  exist globally and/or locally.
+     * @param {IEightBittrSettings} settings
      */
-    constructor(settings: IEightBittrSettings) {
+    constructor(settings: IEightBittrSettings = {}) {
         var EightBitter: EightBittr = EightBittr.prototype.ensureCorrectCaller(this),
             constants: string[],
             requirements: any,
@@ -36,23 +49,28 @@ class EightBittr {
         // EightBitter.constructor = settings.constructor || EightBittr,
 
         // Constants, such as unitsize and scale, are always copied first
-        constants = settings.constants;
-        if (constants) {
+        EightBitter.constants = settings.constants;
+        if (EightBitter.constants) {
             for (i = 0; i < constants.length; i += 1) {
                 EightBitter[constants[i]] = EightBitter.constructor[constants[i]];
             }
         }
 
-        requirements = settings.requirements;
-        if (requirements) {
+        EightBitter.requirements = settings.requirements;
+        if (EightBitter.requirements) {
             if (requirements.global) {
-                EightBitter.checkRequirements(window, requirements.global, "global");
+                if (typeof window !== "undefined") {
+                    EightBitter.checkRequirements(window, requirements.global, "global");
+                // } else if (typeof global !== "undefined") {
+                //     EightBitter.checkRequirements(global, requirements.global, "global");
+                }
             }
             if (requirements.self) {
                 EightBitter.checkRequirements(EightBitter, requirements.self, "self");
             }
         }
     }
+
 
     /* Resets
     */
@@ -62,21 +80,21 @@ class EightBittr {
      * include them, this makes sure each of those requirements is a property of
      * the given Object. 
      * 
-     * @param {Mixed} self    Generally either the window (for global checks,
+     * @param {Mixed} scope    Generally either the window (for global checks,
      *                         such as utility classes) or an EightBitter.    
      * @param {Object} requirements   An associative array of properties to 
-     *                                check for under self.
-     * @param {String} name   The name referring to self, printed out in an
+     *                                check for under scope.
+     * @param {String} name   The name referring to scope, printed out in an
      *                        Error if needed.
      */
-    checkRequirements(self: any, requirements: any, name: string): void {
+    checkRequirements(scope: any, requirements: any, name: string): void {
         var fails: string[] = [],
             requirement: any;
 
         // For each requirement in the given object, if it isn't visible as a
-        // member of self (evaluates to falsy), complain
+        // member of scope (evaluates to falsy), complain
         for (requirement in requirements) {
-            if (requirements.hasOwnProperty(requirement) && !self[requirement]) {
+            if (requirements.hasOwnProperty(requirement) && !scope[requirement]) {
                 fails.push(requirement);
             }
         }
@@ -91,7 +109,7 @@ class EightBittr {
                     return i + ". " + requirement + ": is the '"
                         + requirements[requirement] + "' file included?";
                 }).join("\n")
-                );
+            );
         }
     }
 
@@ -105,14 +123,21 @@ class EightBittr {
      * @param {Object} [customs]   Additional arguments to pass to all reset
      *                             Functions.
      */
-    reset(EightBitter: EightBittr, resets: string[], customs: any): void {
-        var i: number;
-
-        for (i = 0; i < resets.length; i += 1) {
-            EightBitter[resets[i]](EightBitter, customs);
-        }
+    reset(EightBitter: EightBittr, resets: string[], customs: any = undefined): void {
+        var reset: string,
+            i: number;
 
         EightBitter.customs = customs;
+
+        for (i = 0; i < resets.length; i += 1) {
+            reset = resets[i];
+
+            if (!EightBitter.hasOwnProperty(reset)) {
+                throw new Error(reset + " is missing on a resetting EightBittr.");
+            }
+
+            EightBitter[reset](EightBitter, customs);
+        }
     }
 
     /**
@@ -160,8 +185,8 @@ class EightBittr {
      * be used on "a.b".split('.') (so EightBitter.prototype[a][b] is returned).
      * 
      * @this {EightBittr}
-     * @param {Mixed} name   Either the function itself, or a string of the path
-     *                       to the function (after ".prototype.").
+     * @param {Mixed} name   Either the Function itself, or a string of the path
+     *                       to the Function (after ".prototype.").
      * @return {Function}   A function, bound to set "this" to the calling
      *                      EightBitter
      */
@@ -243,7 +268,7 @@ class EightBittr {
      * @param {Thing} thing
      * @param {Number} dy
      */
-    shiftVert(thing: any, dy: number): void {
+    shiftVert(thing: IThing, dy: number): void {
         thing.top += dy;
         thing.bottom += dy;
     }
@@ -254,7 +279,7 @@ class EightBittr {
      * @param {Thing} thing
      * @param {Number} dy
      */
-    shiftHoriz(thing: any, dx: number): void {
+    shiftHoriz(thing: IThing, dx: number): void {
         thing.left += dx;
         thing.right += dx;
     }
@@ -266,7 +291,7 @@ class EightBittr {
      * @param {Thing} thing
      * @param {Number} top
      */
-    setTop(thing: any, top: number): void {
+    setTop(thing: IThing, top: number): void {
         thing.top = top;
         thing.bottom = thing.top + thing.height * thing.EightBitter.unitsize;
     }
@@ -278,7 +303,7 @@ class EightBittr {
      * @param {Thing} thing
      * @param {Number} right
      */
-    setRight(thing: any, right: number): void {
+    setRight(thing: IThing, right: number): void {
         thing.right = right;
         thing.left = thing.right - thing.width * thing.EightBitter.unitsize;
     }
@@ -290,7 +315,7 @@ class EightBittr {
      * @param {Thing} thing
      * @param {Number} bottom
      */
-    setBottom(thing: any, bottom: number): void {
+    setBottom(thing: IThing, bottom: number): void {
         thing.bottom = bottom;
         thing.top = thing.bottom - thing.height * thing.EightBitter.unitsize;
     }
@@ -302,7 +327,7 @@ class EightBittr {
      * @param {Thing} thing
      * @param {Number} left
      */
-    setLeft(thing: any, left: number): void {
+    setLeft(thing: IThing, left: number): void {
         thing.left = left;
         thing.right = thing.left + thing.width * thing.EightBitter.unitsize;
     }
@@ -314,7 +339,7 @@ class EightBittr {
      * @param {Number} x
      * @param {Number} y
      */
-    setMid(thing: any, x: number, y: number): void {
+    setMid(thing: IThing, x: number, y: number): void {
         thing.EightBitter.setMidX(thing, x);
         thing.EightBitter.setMidY(thing, y);
     }
@@ -325,7 +350,7 @@ class EightBittr {
      * @param {Thing} thing
      * @param {Number} x
      */
-    setMidX(thing: any, x: number): void {
+    setMidX(thing: IThing, x: number): void {
         thing.EightBitter.setLeft(
             thing,
             x + thing.width * thing.EightBitter.unitsize / 2
@@ -338,7 +363,7 @@ class EightBittr {
      * @param {Thing} thing
      * @param {Number} y
      */
-    setMidY(thing: any, y: number): void {
+    setMidY(thing: IThing, y: number): void {
         thing.EightBitter.setTop(
             thing,
             y + thing.height * thing.EightBitter.unitsize / 2
@@ -349,7 +374,7 @@ class EightBittr {
      * @param {Thing} thing
      * @return {Number} The horizontal midpoint of the Thing.
      */
-    getMidX(thing: any): number {
+    getMidX(thing: IThing): number {
         return thing.left + thing.width * thing.EightBitter.unitsize / 2;
     }
 
@@ -357,7 +382,7 @@ class EightBittr {
      * @param {Thing} thing
      * @return {Number} The vertical midpoint of the Thing.
      */
-    getMidY(thing: any): number {
+    getMidY(thing: IThing): number {
         return thing.top + thing.height * thing.EightBitter.unitsize / 2;
     }
 
@@ -368,7 +393,7 @@ class EightBittr {
      * @param {Thing} thing   The Thing to be shifted.
      * @param {Thing} other   The Thing whose midpoint is referenced.
      */
-    setMidObj(thing: any, other: any): void {
+    setMidObj(thing: IThing, other: any): void {
         thing.EightBitter.setMidXObj(thing, other);
         thing.EightBitter.setMidYObj(thing, other);
     }
@@ -380,7 +405,7 @@ class EightBittr {
      * @param {Thing} thing   The Thing to be shifted.
      * @param {Thing} other   The Thing whose midpoint is referenced.
      */
-    setMidXObj(thing: any, other: any): void {
+    setMidXObj(thing: IThing, other: any): void {
         thing.EightBitter.setLeft(
             thing,
             thing.EightBitter.getMidX(other)
@@ -395,7 +420,7 @@ class EightBittr {
      * @param {Thing} thing   The Thing to be shifted.
      * @param {Thing} other   The Thing whose midpoint is referenced.
      */
-    setMidYObj(thing: any, other: any): void {
+    setMidYObj(thing: IThing, other: any): void {
         thing.EightBitter.setTop(
             thing,
             thing.EightBitter.getMidY(other)
@@ -409,7 +434,7 @@ class EightBittr {
      * @return {Boolean} Whether the first Thing's midpoing is to the left of
      *                   the other's.
      */
-    objectToLeft(thing: any, other: any): boolean {
+    objectToLeft(thing: IThing, other: any): boolean {
         return (
             thing.EightBitter.getMidX(thing) < thing.EightBitter.getMidX(other)
             );
@@ -422,7 +447,7 @@ class EightBittr {
      * @param {Thing} thing
      * @param {Number} dy
      */
-    updateTop(thing: any, dy: number): any {
+    updateTop(thing: IThing, dy: number): any {
         // If a dy is provided, move the thing's top that much
         thing.top += dy || 0;
 
@@ -437,7 +462,7 @@ class EightBittr {
      * @param {Thing} thing
      * @param {Number} dx
      */
-    updateRight(thing: any, dx: number): any {
+    updateRight(thing: IThing, dx: number): any {
         // If a dx is provided, move the thing's right that much
         thing.right += dx || 0;
 
@@ -452,7 +477,7 @@ class EightBittr {
      * @param {Thing} thing
      * @param {Number} dy
      */
-    updateBottom(thing: any, dy: number): void {
+    updateBottom(thing: IThing, dy: number): void {
         // If a dy is provided, move the thing's bottom that much
         thing.bottom += dy || 0;
 
@@ -467,7 +492,7 @@ class EightBittr {
      * @param {Thing} thing
      * @param {Number} dy
      */
-    updateLeft(thing: any, dx: number): void {
+    updateLeft(thing: IThing, dx: number): void {
         // If a dx is provided, move the thing's left that much
         thing.left += dx || 0;
 
@@ -483,7 +508,7 @@ class EightBittr {
      * @param {Number} x
      * @param {Number} maxSpeed
      */
-    slideToX(thing: any, x: number, maxSpeed: number): void {
+    slideToX(thing: IThing, x: number, maxSpeed: number): void {
         var midx: number = thing.EightBitter.getMidX(thing);
 
         // If no maxSpeed is provided, assume Infinity (so it doesn't matter)
@@ -506,7 +531,7 @@ class EightBittr {
      * @param {Number} y
      * @param {Number} maxSpeed
      */
-    slideToY(thing: any, y: number, maxSpeed: number): void {
+    slideToY(thing: IThing, y: number, maxSpeed: number): void {
         var midy: number = thing.EightBitter.getMidY(thing);
 
         // If no maxSpeed is provided, assume Infinity (so it doesn't matter)
@@ -732,7 +757,7 @@ class EightBittr {
      * @param {Array} arrayOld
      * @param {Array} arrayNew
      */
-    arraySwitch(thing: any, arrayOld: any[], arrayNew: any[]): void {
+    arraySwitch(thing: IThing, arrayOld: any[], arrayNew: any[]): void {
         arrayOld.splice(arrayOld.indexOf(thing), 1);
         arrayNew.push(thing);
     }
@@ -744,7 +769,7 @@ class EightBittr {
      * @param {Thing} thing
      * @param {Array} array
      */
-    arrayToBeginning(thing: any, array: any[]): void {
+    arrayToBeginning(thing: IThing, array: any[]): void {
         array.splice(array.indexOf(thing), 1);
         array.unshift(thing);
     }
@@ -756,7 +781,7 @@ class EightBittr {
      * @param {Thing} thing
      * @param {Array} array
      */
-    arrayToEnd(thing: any, array: any[]): any {
+    arrayToEnd(thing: IThing, array: any[]): any {
         array.splice(array.indexOf(thing), 1);
         array.push(thing);
     }
