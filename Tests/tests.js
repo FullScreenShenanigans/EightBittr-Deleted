@@ -2,13 +2,13 @@ var EightBitter;
 
 describe("constructor", function () {
 	it("doesn't throw an error by default", function () {
-		new EightBittr();
+		new EightBittr.EightBittr();
 	});
 });
 
 describe("reset", function () {
 	it("doesn't throw an error by default", function () {
-		EightBitter = new EightBittr();
+		EightBitter = new EightBittr.EightBittr();
 		EightBitter.reset(EightBitter, []);
 	});
 	
