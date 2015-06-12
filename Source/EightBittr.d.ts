@@ -1,10 +1,4 @@
 declare module EightBittr {
-    export interface IEightBittrSettings {
-        constantsSource?: any;
-        constants?: string[];
-        requirements?: any;
-    }
-
     export interface IThing {
         EightBitter: IEightBittr;
         top: number;
@@ -15,6 +9,22 @@ declare module EightBittr {
         height: number;
         xvel: number;
         yvel: number;
+    }
+
+    export interface IEightBittrRequirementsListing {
+        global?: {
+            [i: string]: string;
+        }
+        self?: {
+            [i: string]: string;
+        }
+    }
+
+    export interface IEightBittrSettings {
+        unitsize?: number;
+        constantsSource?: any;
+        constants?: string[];
+        requirements?: any;
     }
 
     export interface IEightBittr {

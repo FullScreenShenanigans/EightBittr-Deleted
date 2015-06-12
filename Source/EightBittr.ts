@@ -1,4 +1,8 @@
+// @ifdef INCLUDE_DEFINITIONS
 /// <reference path="EightBittr.d.ts" />
+// @endif
+
+// @include ../Source/EightBittr.d.ts
 
 module EightBittr {
     "use strict";
@@ -9,13 +13,28 @@ module EightBittr {
      * the required GameStartr modules.
      */
     export class EightBittr implements IEightBittr {
+        /**
+         * How much to expand each pixel from raw sizing measurements to in-game.
+         */
         public unitsize: number;
 
+        /**
+         * Any custom settings passed in during construction to be passed to
+         * reset Functions.
+         */
         protected customs: any;
 
+        /**
+         * A listing of the names of all member variables of this EightBittr
+         * that should be pulled in from the setting's constantsSource.
+         */
         protected constants: string[];
 
-        protected requirements: any;
+        /**
+         * Variables that must exist, either listed under this EightBittr
+         * (such as from a sub-class) or globally.
+         */
+        protected requirements: IEightBittrRequirementsListing;
 
         /**
          * EightBittr constructor. Settings arguments are used to initialize 
@@ -30,6 +49,8 @@ module EightBittr {
                 constantsSource: any = settings.constantsSource || EightBitter,
                 requirements: any = settings.requirements,
                 i: number;
+
+            EightBitter.unitsize = settings.unitsize || 1;
 
             EightBitter.constants = constants;
             if (constants) {
@@ -498,10 +519,10 @@ module EightBittr {
 
             // Thing to the left? Slide to the right.
             if (midx < x) {
-                thing.EightBitter.shiftHoriz(thing, Math.min(maxSpeed, (x - midx)));
+                thing.EightBitter.shiftHoriz(thing, Math.min(maxSpeed,(x - midx)));
             } else {
                 // Thing to the right? Slide to the left.
-                thing.EightBitter.shiftHoriz(thing, Math.max(-maxSpeed, (x - midx)));
+                thing.EightBitter.shiftHoriz(thing, Math.max(-maxSpeed,(x - midx)));
             }
         }
 
@@ -521,10 +542,10 @@ module EightBittr {
 
             // Thing above? slide down.
             if (midy < y) {
-                thing.EightBitter.shiftVert(thing, Math.min(maxSpeed, (y - midy)));
+                thing.EightBitter.shiftVert(thing, Math.min(maxSpeed,(y - midy)));
             } else {
                 // Thing below? Slide up.
-                thing.EightBitter.shiftVert(thing, Math.max(-maxSpeed, (y - midy)));
+                thing.EightBitter.shiftVert(thing, Math.max(-maxSpeed,(y - midy)));
             }
         }
 
