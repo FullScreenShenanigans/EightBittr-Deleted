@@ -519,10 +519,10 @@ module EightBittr {
 
             // Thing to the left? Slide to the right.
             if (midx < x) {
-                thing.EightBitter.shiftHoriz(thing, Math.min(maxSpeed,(x - midx)));
+                thing.EightBitter.shiftHoriz(thing, Math.min(maxSpeed, x - midx));
             } else {
                 // Thing to the right? Slide to the left.
-                thing.EightBitter.shiftHoriz(thing, Math.max(-maxSpeed,(x - midx)));
+                thing.EightBitter.shiftHoriz(thing, Math.max(-maxSpeed, x - midx));
             }
         }
 
@@ -542,10 +542,10 @@ module EightBittr {
 
             // Thing above? slide down.
             if (midy < y) {
-                thing.EightBitter.shiftVert(thing, Math.min(maxSpeed,(y - midy)));
+                thing.EightBitter.shiftVert(thing, Math.min(maxSpeed, y - midy));
             } else {
                 // Thing below? Slide up.
-                thing.EightBitter.shiftVert(thing, Math.max(-maxSpeed,(y - midy)));
+                thing.EightBitter.shiftVert(thing, Math.max(-maxSpeed, y - midy));
             }
         }
 
