@@ -796,5 +796,18 @@ module EightBittr {
             array.splice(array.indexOf(thing), 1);
             array.push(thing);
         }
+
+        /**
+         * Sets a Thing's position within an Array to a specific index by splicing 
+         * it out, then back in.
+         * 
+         * @param {Thing} thing
+         * @param {Array} array
+         * @param {Number} index
+         */
+        arrayToIndex(thing: IThing, array: any[], index: number): void {
+            array.splice(array.indexOf(thing), 1);
+            array.splice(index, 0, thing);
+        }
     };
 }

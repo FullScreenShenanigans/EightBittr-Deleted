@@ -63,6 +63,7 @@ declare module EightBittr {
         followPathHard(object: any, path: string[], num?: number): any;
         arraySwitch(thing: IThing, arrayOld: any[], arrayNew: any[]): void;
         arrayToBeginning(thing: IThing, array: any[]): void;
-        arrayToEnd(thing: IThing, array: any[]): any;
+        arrayToEnd(thing: IThing, array: any[]): void;
+        arrayToIndex(thing: IThing, array: any[], index: number): void;
     }
 }
