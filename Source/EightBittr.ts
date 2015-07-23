@@ -356,8 +356,7 @@ module EightBittr {
         setMidX(thing: IThing, x: number): void {
             thing.EightBitter.setLeft(
                 thing,
-                x + thing.width * thing.EightBitter.unitsize / 2
-                );
+                x - thing.width * thing.EightBitter.unitsize / 2);
         }
 
         /**
@@ -369,8 +368,7 @@ module EightBittr {
         setMidY(thing: IThing, y: number): void {
             thing.EightBitter.setTop(
                 thing,
-                y + thing.height * thing.EightBitter.unitsize / 2
-                );
+                y - thing.height * thing.EightBitter.unitsize / 2);
         }
 
         /**
