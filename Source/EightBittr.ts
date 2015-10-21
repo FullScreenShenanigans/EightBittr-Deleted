@@ -89,7 +89,7 @@ module EightBittr {
          * @param EightBitter
          * @param resets   The ordered Array of reset Functions to be called.
          * @param customs   Additional arguments to pass to all reset Functions.
-         * @returns A summary of itmes for reset Functions and the overall operation.
+         * @returns A summary of times for reset Functions and the overall operation.
          */
         resetTimed(EightBitter: EightBittr, resets: string[], customs?: any): IResetTimes {
             var resetTimes: IResetTimes =
