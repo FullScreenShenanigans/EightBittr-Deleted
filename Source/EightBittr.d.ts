@@ -94,7 +94,7 @@ declare module EightBittr {
         /**
          * Timed result summaries of resetTimed, if it was called.
          */
-        public resetTimes: EightBittr.IResetTimes;
+        resetTimes: EightBittr.IResetTimes;
 
         /**
          * Resets the EightBittr by calling all of the named reset member Functions
