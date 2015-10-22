@@ -19,6 +19,11 @@ module EightBittr {
         public unitsize: number;
 
         /**
+         * Timed result summaries of resetTimed, if it was called.
+         */
+        public resetTimes: EightBittr.IResetTimes;
+
+        /**
          * Any custom settings passed in during construction to be passed to
          * reset Functions.
          */
@@ -89,26 +94,25 @@ module EightBittr {
          * @param EightBitter
          * @param resets   The ordered Array of reset Functions to be called.
          * @param customs   Additional arguments to pass to all reset Functions.
-         * @returns A summary of times for reset Functions and the overall operation.
          */
-        resetTimed(EightBitter: EightBittr, resets: string[], customs?: any): IResetTimes {
-            var resetTimes: IResetTimes =
-                <any>{
-                    order: resets,
-                    times: []
-                },
-                timeStartTotal: number = performance.now(),
+        resetTimed(EightBitter: EightBittr, resets: string[], customs?: any): void {
+            var timeStartTotal: number = performance.now(),
                 timeEndTotal: number,
                 timeStart: number,
                 timeEnd: number,
                 i: number;
+
+            this.resetTimes = <any>{
+                order: resets,
+                times: []
+            };
 
             for (i = 0; i < resets.length; i += 1) {
                 timeStart = performance.now();
                 EightBitter[resets[i]](EightBitter, customs);
                 timeEnd = performance.now();
 
-                resetTimes.times.push({
+                this.resetTimes.times.push({
                     "name": resets[i],
                     "timeStart": timeStart,
                     "timeEnd": timeEnd,
@@ -118,14 +122,12 @@ module EightBittr {
 
             timeEndTotal = performance.now();
 
-            resetTimes.total = {
+            this.resetTimes.total = {
                 "name": "resetTimed",
                 "timeStart": timeStartTotal,
                 "timeEnd": timeEndTotal,
                 "timeTaken": timeEndTotal - timeStartTotal
             };
-
-            return resetTimes;
         }
 
 

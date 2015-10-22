@@ -92,6 +92,11 @@ declare module EightBittr {
         unitsize: number;
 
         /**
+         * Timed result summaries of resetTimed, if it was called.
+         */
+        public resetTimes: EightBittr.IResetTimes;
+
+        /**
          * Resets the EightBittr by calling all of the named reset member Functions
          * on itself.
          * 
@@ -109,9 +114,8 @@ declare module EightBittr {
          * @param EightBitter
          * @param resets   The ordered Array of reset Functions to be called.
          * @param customs   Additional arguments to pass to all reset Functions.
-         * @returns A summary of itmes for reset Functions and the overall operation.
          */
-        resetTimed(EightBitter: IEightBittr, resets: string[], customs?: any): IResetTimes;
+        resetTimed(EightBitter: IEightBittr, resets: string[], customs?: any): void;
 
         /**
          * Creates and returns a new HTML <canvas> element, with an optional scaling
