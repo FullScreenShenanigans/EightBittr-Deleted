@@ -14,7 +14,7 @@ export abstract class Physics<TIEightBittr extends IEightBittr> extends Componen
      * @param thing   The Thing to shift vertically.
      * @param dy   How far to shift the Thing.
      */
-    shiftVert(thing: IThing, dy: number): void {
+    public shiftVert(thing: IThing, dy: number): void {
         thing.top += dy;
         thing.bottom += dy;
     }
@@ -25,7 +25,7 @@ export abstract class Physics<TIEightBittr extends IEightBittr> extends Componen
      * @param thing   The Thing to shift horizontally.
      * @param dy   How far to shift the Thing.
      */
-    shiftHoriz(thing: IThing, dx: number): void {
+    public shiftHoriz(thing: IThing, dx: number): void {
         thing.left += dx;
         thing.right += dx;
     }
@@ -37,7 +37,7 @@ export abstract class Physics<TIEightBittr extends IEightBittr> extends Componen
      * @param thing   The Thing to shift vertically.
      * @param top   Where the Thing's top should be.
      */
-    setTop(thing: IThing, top: number): void {
+    public setTop(thing: IThing, top: number): void {
         thing.top = top;
         thing.bottom = thing.top + thing.height * this.EightBitter.unitsize;
     }
@@ -49,7 +49,7 @@ export abstract class Physics<TIEightBittr extends IEightBittr> extends Componen
      * @param thing   The Thing to shift horizontally.
      * @param top   Where the Thing's right should be.
      */
-    setRight(thing: IThing, right: number): void {
+    public setRight(thing: IThing, right: number): void {
         thing.right = right;
         thing.left = thing.right - thing.width * this.EightBitter.unitsize;
     }
@@ -61,7 +61,7 @@ export abstract class Physics<TIEightBittr extends IEightBittr> extends Componen
      * @param thing   The Thing to shift vertically.
      * @param top   Where the Thing's bottom should be.
      */
-    setBottom(thing: IThing, bottom: number): void {
+    public setBottom(thing: IThing, bottom: number): void {
         thing.bottom = bottom;
         thing.top = thing.bottom - thing.height * this.EightBitter.unitsize;
     }
@@ -73,7 +73,7 @@ export abstract class Physics<TIEightBittr extends IEightBittr> extends Componen
      * @param thing   The Thing to shift horizontally.
      * @param top   Where the Thing's left should be.
      */
-    setLeft(thing: IThing, left: number): void {
+    public setLeft(thing: IThing, left: number): void {
         thing.left = left;
         thing.right = thing.left + thing.width * this.EightBitter.unitsize;
     }
@@ -84,7 +84,7 @@ export abstract class Physics<TIEightBittr extends IEightBittr> extends Componen
      * @param thing   The Thing to shift horizontally.
      * @param x   Where the Thing's horizontal midpoint should be.
      */
-    setMidX(thing: IThing, x: number): void {
+    public setMidX(thing: IThing, x: number): void {
         this.setLeft(
             thing,
             x - thing.width * this.EightBitter.unitsize / 2);
@@ -96,7 +96,7 @@ export abstract class Physics<TIEightBittr extends IEightBittr> extends Componen
      * @param thing   The Thing to shift vertically.
      * @param y   Where the Thing's vertical midpoint should be.
      */
-    setMidY(thing: IThing, y: number): void {
+    public setMidY(thing: IThing, y: number): void {
         this.setTop(
             thing,
             y - thing.height * this.EightBitter.unitsize / 2);
@@ -109,7 +109,7 @@ export abstract class Physics<TIEightBittr extends IEightBittr> extends Componen
      * @param x   Where the Thing's horizontal midpoint should be.
      * @param y   Where the Thing's vertical midpoint should be.
      */
-    setMid(thing: IThing, x: number, y: number): void {
+    public setMid(thing: IThing, x: number, y: number): void {
         this.setMidX(thing, x);
         this.setMidY(thing, y);
     }
@@ -118,7 +118,7 @@ export abstract class Physics<TIEightBittr extends IEightBittr> extends Componen
      * @param thing
      * @returns The horizontal midpoint of the Thing.
      */
-    getMidX(thing: IThing): number {
+    public getMidX(thing: IThing): number {
         return thing.left + thing.width * this.EightBitter.unitsize / 2;
     }
 
@@ -126,7 +126,7 @@ export abstract class Physics<TIEightBittr extends IEightBittr> extends Componen
      * @param thing
      * @returns The vertical midpoint of the Thing.
      */
-    getMidY(thing: IThing): number {
+    public getMidY(thing: IThing): number {
         return thing.top + thing.height * this.EightBitter.unitsize / 2;
     }
 
@@ -137,7 +137,7 @@ export abstract class Physics<TIEightBittr extends IEightBittr> extends Componen
      * @param thing   The Thing to be shifted.
      * @param other   The Thing whose midpoint is referenced.
      */
-    setMidObj(thing: IThing, other: IThing): void {
+    public setMidObj(thing: IThing, other: IThing): void {
         this.setMidXObj(thing, other);
         this.setMidYObj(thing, other);
     }
@@ -149,7 +149,7 @@ export abstract class Physics<TIEightBittr extends IEightBittr> extends Componen
      * @param thing   The Thing to be shifted horizontally.
      * @param other   The Thing whose horizontal midpoint is referenced.
      */
-    setMidXObj(thing: IThing, other: IThing): void {
+    public setMidXObj(thing: IThing, other: IThing): void {
         this.setLeft(
             thing,
             this.getMidX(other) - (thing.width * this.EightBitter.unitsize / 2));
@@ -162,7 +162,7 @@ export abstract class Physics<TIEightBittr extends IEightBittr> extends Componen
      * @param thing   The Thing to be shifted vertically.
      * @param other   The Thing whose vertical midpoint is referenced.
      */
-    setMidYObj(thing: IThing, other: IThing): void {
+    public setMidYObj(thing: IThing, other: IThing): void {
         this.setTop(
             thing,
             this.getMidY(other) - (thing.height * this.EightBitter.unitsize / 2));
@@ -173,7 +173,7 @@ export abstract class Physics<TIEightBittr extends IEightBittr> extends Componen
      * @param other
      * @returns Whether the first Thing's midpoint is to the left of the other's.
      */
-    objectToLeft(thing: IThing, other: IThing): boolean {
+    public objectToLeft(thing: IThing, other: IThing): boolean {
         return this.getMidX(thing) < this.getMidX(other);
     }
 
@@ -184,7 +184,7 @@ export abstract class Physics<TIEightBittr extends IEightBittr> extends Componen
      * @param thing   The Thing to be shifted vertically.
      * @param dy   How far to shift the Thing vertically (by default, 0).
      */
-    updateTop(thing: IThing, dy: number = 0): void {
+    public updateTop(thing: IThing, dy: number = 0): void {
         thing.top += dy;
         thing.bottom = thing.top + thing.height * this.EightBitter.unitsize;
     }
@@ -196,7 +196,7 @@ export abstract class Physics<TIEightBittr extends IEightBittr> extends Componen
      * @param thing   The Thing to be shifted horizontally.
      * @param dx   How far to shift the Thing horizontally (by default, 0).
      */
-    updateRight(thing: IThing, dx: number = 0): void {
+    public updateRight(thing: IThing, dx: number = 0): void {
         thing.right += dx;
         thing.left = thing.right - thing.width * this.EightBitter.unitsize;
     }
@@ -208,7 +208,7 @@ export abstract class Physics<TIEightBittr extends IEightBittr> extends Componen
      * @param thing   The Thing to be shifted vertically.
      * @param dy   How far to shift the Thing vertically (by default, 0).
      */
-    updateBottom(thing: IThing, dy: number = 0): void {
+    public updateBottom(thing: IThing, dy: number = 0): void {
         thing.bottom += dy;
         thing.top = thing.bottom - thing.height * this.EightBitter.unitsize;
     }
@@ -220,7 +220,7 @@ export abstract class Physics<TIEightBittr extends IEightBittr> extends Componen
      * @param thing   The Thing to be shifted horizontally.
      * @param dx   How far to shift the Thing horizontally (by default, 0).
      */
-    updateLeft(thing: IThing, dx: number = 0): void {
+    public updateLeft(thing: IThing, dx: number = 0): void {
         thing.left += dx;
         thing.right = thing.left + thing.width * this.EightBitter.unitsize;
     }
@@ -234,8 +234,8 @@ export abstract class Physics<TIEightBittr extends IEightBittr> extends Componen
      * @param maxDistance   The maximum distance the Thing can be shifted (by
      *                      default, Infinity for no maximum).
      */
-    slideToX(thing: IThing, x: number, maxDistance: number = Infinity): void {
-        var midx: number = this.getMidX(thing);
+    public slideToX(thing: IThing, x: number, maxDistance: number = Infinity): void {
+        const midx: number = this.getMidX(thing);
 
         if (midx < x) {
             this.shiftHoriz(thing, Math.min(maxDistance, x - midx));
@@ -253,8 +253,8 @@ export abstract class Physics<TIEightBittr extends IEightBittr> extends Componen
      * @param maxDistance   The maximum distance the Thing can be shifted (by
      *                      default, Infinity, for no maximum).
      */
-    slideToY(thing: IThing, y: number, maxDistance: number = Infinity): void {
-        var midy: number = this.getMidY(thing);
+    public slideToY(thing: IThing, y: number, maxDistance: number = Infinity): void {
+        const midy: number = this.getMidY(thing);
 
         if (midy < y) {
             this.shiftVert(thing, Math.min(maxDistance, y - midy));

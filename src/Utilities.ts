@@ -16,12 +16,11 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
      *                     be skipped (defaults to false).
      * @returns recipient
      */
-    proliferate(recipient: any, donor: any, noOverride?: boolean): any {
-        var setting: any,
-            i: string;
+    public proliferate(recipient: any, donor: any, noOverride?: boolean): any {
+        let setting: any;
 
         // For each attribute of the donor:
-        for (i in donor) {
+        for (let i in donor) {
             if (donor.hasOwnProperty(i)) {
                 // If noOverride, don't override already existing properties
                 if (noOverride && recipient.hasOwnProperty(i)) {
@@ -55,12 +54,11 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
      *                     be skipped (defaults to false).
      * @returns recipient
      */
-    proliferateHard(recipient: any, donor: any, noOverride?: boolean): any {
-        var setting: any,
-            i: string;
+    public proliferateHard(recipient: any, donor: any, noOverride?: boolean): any {
+        let setting: any;
 
         // For each attribute of the donor:
-        for (i in donor) {
+        for (let i in donor) {
             if (donor.hasOwnProperty(i)) {
                 // If noOverride, don't override already existing properties
                 if (noOverride && recipient[i]) {
@@ -94,13 +92,11 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
      *                     be skipped (defaults to false).
      * @returns recipient
      */
-    proliferateElement(recipient: HTMLElement, donor: any, noOverride: boolean = false): HTMLElement {
-        var setting: any,
-            i: string,
-            j: number;
+    public proliferateElement(recipient: HTMLElement, donor: any, noOverride: boolean = false): HTMLElement {
+        let setting: any;
 
         // For each attribute of the donor:
-        for (i in donor) {
+        for (let i in donor) {
             if (donor.hasOwnProperty(i)) {
                 // If noOverride, don't override already existing properties
                 if (noOverride && recipient.hasOwnProperty(i)) {
@@ -115,7 +111,7 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
                     case "children":
                     case "children":
                         if (typeof (setting) !== "undefined") {
-                            for (j = 0; j < setting.length; j += 1) {
+                            for (let j: number = 0; j < setting.length; j += 1) {
                                 recipient.appendChild(setting[j]);
                             }
                         }
@@ -136,12 +132,12 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
                         if (typeof setting === "object") {
                             // If it's an object, recurse on a new version of it
                             if (!recipient.hasOwnProperty(i)) {
-                                (<any>recipient)[i] = new setting.constructor();
+                                (recipient as any)[i] = new setting.constructor();
                             }
-                            this.proliferate((<any>recipient)[i], setting, noOverride);
+                            this.proliferate((recipient as any)[i], setting, noOverride);
                         } else {
                             // Regular primitives are easy to copy otherwise
-                            (<any>recipient)[i] = setting;
+                            (recipient as any)[i] = setting;
                         }
                         break;
                 }
@@ -160,12 +156,11 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
      * @param settings   Additional settings to proliferated onto the Element.
      * @returns {HTMLElement}
      */
-    createElement(tag?: string, ...args: any[]): HTMLElement {
-        var element: HTMLElement = document.createElement(tag || "div"),
-            i: number;
+    public createElement(tag?: string, ...args: any[]): HTMLElement {
+        let element: HTMLElement = document.createElement(tag || "div");
 
         // For each provided object, add those settings to the element
-        for (i = 0; i < args.length; i += 1) {
+        for (let i: number = 0; i < args.length; i += 1) {
             this.proliferateElement(element, args[i]);
         }
 
@@ -179,10 +174,9 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
      * @param height   How tall the canvas should be.
      * @returns A canvas of the given width and height height.
      */
-    createCanvas(width: number, height: number): HTMLCanvasElement {
-        var canvas: HTMLCanvasElement = document.createElement("canvas"),
-            // context: CanvasRenderingContext2D = canvas.getContext("2d");
-            context: any = canvas.getContext("2d");
+    public createCanvas(width: number, height: number): HTMLCanvasElement {
+        let canvas: HTMLCanvasElement = document.createElement("canvas");
+        let context: any = canvas.getContext("2d");
 
         canvas.width = width;
         canvas.height = height;
@@ -212,8 +206,8 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
      * @returns The discovered property within object, or undefined if the
      *          full path doesn't exist.
      */
-    followPathHard(object: any, path: string[], index: number = 0): any {
-        for (var i: number = index; i < path.length; i += 1) {
+    public followPathHard(object: any, path: string[], index: number = 0): any {
+        for (let i: number = index; i < path.length; i += 1) {
             if (typeof object[path[i]] === "undefined") {
                 return undefined;
             }
@@ -231,7 +225,7 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
      * @param arrayOld   The Array to take the object out of.
      * @param arrayNew   The Array to move the object into.
      */
-    arraySwitch(object: any, arrayOld: any[], arrayNew: any[]): void {
+    public arraySwitch(object: any, arrayOld: any[], arrayNew: any[]): void {
         arrayOld.splice(arrayOld.indexOf(object), 1);
         arrayNew.push(object);
     }
@@ -243,7 +237,7 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
      * @param object   The object to move within the Array.
      * @param array   An Array currently containing the object.
      */
-    arrayToBeginning(object: any, array: any[]): void {
+    public arrayToBeginning(object: any, array: any[]): void {
         array.splice(array.indexOf(object), 1);
         array.unshift(object);
     }
@@ -255,7 +249,7 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
      * @param object   The object to move within the Array.
      * @param array   An Array currently containing the object.
      */
-    arrayToEnd(object: IThing, array: any[]): void {
+    public arrayToEnd(object: IThing, array: any[]): void {
         array.splice(array.indexOf(object), 1);
         array.push(object);
     }
@@ -268,7 +262,7 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
      * @param array   An Array currently containing the object.
      * @param index   Where the object should be moved to in the Array.
      */
-    arrayToIndex(object: IThing, array: any[], index: number): void {
+    public arrayToIndex(object: IThing, array: any[], index: number): void {
         array.splice(array.indexOf(object), 1);
         array.splice(index, 0, object);
     }
