@@ -169,9 +169,20 @@ export class Physics<TIEightBittr extends IEightBittr> extends Component<TIEight
     /**
      * @param thing
      * @param other
-     * @returns Whether the first Thing's midpoint is to the left of the other's.
+     * @returns Whether the first Thing's vertical midpoint is to the left
+     *          of the other's.
      */
-    public objectToLeft(thing: IThing, other: IThing): boolean {
+    public thingAbove(thing: IThing, other: IThing): boolean {
+        return this.getMidY(thing) < this.getMidY(other);
+    }
+
+    /**
+     * @param thing
+     * @param other
+     * @returns Whether the first Thing's horizontal midpoint is to the left
+     *          of the other's.
+     */
+    public thingToLeft(thing: IThing, other: IThing): boolean {
         return this.getMidX(thing) < this.getMidX(other);
     }
 
@@ -228,17 +239,17 @@ export class Physics<TIEightBittr extends IEightBittr> extends Component<TIEight
      * Distance is computed as from the Thing's horizontal midpoint.
      * 
      * @param thing   The Thing to be shifted horizontally.
-     * @param x   How far to shift the Thing horizontally.
+     * @param dx   How far to shift the Thing horizontally.
      * @param maxDistance   The maximum distance the Thing can be shifted (by
      *                      default, Infinity for no maximum).
      */
-    public slideToX(thing: IThing, x: number, maxDistance: number = Infinity): void {
+    public slideToX(thing: IThing, dx: number, maxDistance: number = Infinity): void {
         const midx: number = this.getMidX(thing);
 
-        if (midx < x) {
-            this.shiftHoriz(thing, Math.min(maxDistance, x - midx));
+        if (midx < dx) {
+            this.shiftHoriz(thing, Math.min(maxDistance, dx - midx));
         } else {
-            this.shiftHoriz(thing, Math.max(-maxDistance, x - midx));
+            this.shiftHoriz(thing, Math.max(-maxDistance, dx - midx));
         }
     }
 
@@ -247,17 +258,17 @@ export class Physics<TIEightBittr extends IEightBittr> extends Component<TIEight
      * Distance is computed as from the Thing's vertical midpoint.
      * 
      * @param thing   The Thing to be shifted vertically.
-     * @param x   How far to shift the Thing vertically.
+     * @param dy   How far to shift the Thing vertically.
      * @param maxDistance   The maximum distance the Thing can be shifted (by
      *                      default, Infinity, for no maximum).
      */
-    public slideToY(thing: IThing, y: number, maxDistance: number = Infinity): void {
+    public slideToY(thing: IThing, dy: number, maxDistance: number = Infinity): void {
         const midy: number = this.getMidY(thing);
 
-        if (midy < y) {
-            this.shiftVert(thing, Math.min(maxDistance, y - midy));
+        if (midy < dy) {
+            this.shiftVert(thing, Math.min(maxDistance, dy - midy));
         } else {
-            this.shiftVert(thing, Math.max(-maxDistance, y - midy));
+            this.shiftVert(thing, Math.max(-maxDistance, dy - midy));
         }
     }
 }

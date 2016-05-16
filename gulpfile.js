@@ -39,3 +39,4 @@ gulp.task("watch", ["default"], () => {
     gulp.watch("src/**/*.ts", ["default"]);
 });
 
+gulp.task("default", ["tsc", "tslint", "dist"]);
