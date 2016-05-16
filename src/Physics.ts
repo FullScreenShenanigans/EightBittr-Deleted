@@ -3,11 +3,9 @@ import { IEightBittr } from "./IEightBittr";
 import { IThing } from "./IThing";
 
 /**
- * An abstract class used exclusively as the parent of GameStartr. EightBittr
- * contains useful functions for manipulating Things that are independent of
- * the required GameStartr modules.
+ * Physics functions used by EightBittr instances.
  */
-export abstract class Physics<TIEightBittr extends IEightBittr> extends Component<TIEightBittr> {
+export class Physics<TIEightBittr extends IEightBittr> extends Component<TIEightBittr> {
     /**
      * Shifts a Thing vertically by changing its top and bottom attributes.
      * 

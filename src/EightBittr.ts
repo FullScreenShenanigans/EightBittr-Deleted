@@ -9,7 +9,7 @@ import { Utilities } from "./Utilities";
  */
 export class EightBittr implements IEightBittr {
     /**
-     * 
+     * Physics functions used by this instance.
      */
     public physics: Physics<EightBittr>;
 
@@ -19,15 +19,9 @@ export class EightBittr implements IEightBittr {
     public unitsize: number;
 
     /**
-     * 
+     * Utility functions used by this instance.
      */
     public utilities: Utilities<EightBittr>;
-
-    /**
-     * Any custom settings passed in during construction to be passed to
-     * reset Functions.
-     */
-    protected customs: any;
 
     /**
      * Initializes a new instance of the EightBittr class. Constants are copied
@@ -35,7 +29,24 @@ export class EightBittr implements IEightBittr {
      * 
      * @param settings   Any optional custom settings.
      */
-    constructor(settings: IEightBittrSettings = {}) {
+    public constructor(settings: IEightBittrSettings = {}) {
         this.unitsize = settings.unitsize || 1;
+
+        this.resetPhysics();
+        this.resetUtilities();
+    }
+
+    /**
+     * Resets the physics component.
+     */
+    protected resetPhysics() {
+        this.physics = new Physics(this);
+    }
+
+    /**
+     * Resets the utilities component.
+     */
+    protected resetUtilities() {
+        this.utilities = new Utilities(this);
     }
 }

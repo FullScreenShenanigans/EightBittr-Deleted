@@ -1,5 +1,6 @@
 const gulp = require("gulp");
 const merge = require("merge2");
+const mocha = require("gulp-mocha");
 const ts = require("gulp-typescript");
 const tslint = require("gulp-tslint");
 
@@ -17,6 +18,13 @@ gulp.task("tsc", () => {
         .pipe(gulp.dest("src"));
 });
 
+gulp.task("test", () => {
+    return gulp.src("test/unit.js", { read: false })
+        .pipe(mocha({
+            reporter: "spec"
+        }));
+});
+
 gulp.task("dist", function() {
     var tsResult = gulp.src("src/**/*.ts")
         .pipe(ts());
@@ -26,8 +34,6 @@ gulp.task("dist", function() {
         tsResult.js.pipe(gulp.dest("dist"))
     ]);
 });
-
-gulp.task("default", ["tslint", "tsc", "dist"]);
 
 gulp.task("watch", ["default"], () => {
     gulp.watch("src/**/*.ts", ["default"]);

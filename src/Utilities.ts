@@ -3,7 +3,7 @@ import { IThing } from "./IThing";
 import { IEightBittr } from "./IEightBittr";
 
 /**
- * A bag for miscellaneous EightBittr utilities.
+ * Miscellaneous utilities used by EightBittr instances.
  */
 export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEightBittr> {
     /**
