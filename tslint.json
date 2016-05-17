@@ -7,7 +7,6 @@
             "check-space"
         ],
         "eofline": true,
-        "for-in": true,
         "indent": [
             true,
             "spaces"
