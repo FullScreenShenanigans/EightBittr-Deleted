@@ -21,23 +21,25 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
 
         // For each attribute of the donor:
         for (let i in donor) {
-            if (donor.hasOwnProperty(i)) {
-                // If noOverride, don't override already existing properties
-                if (noOverride && recipient.hasOwnProperty(i)) {
-                    continue;
-                }
+            if (!donor.hasOwnProperty(i)) {
+                continue;
+            }
 
-                // If it's an object, recurse on a new version of it
-                setting = donor[i];
-                if (typeof setting === "object") {
-                    if (!recipient.hasOwnProperty(i)) {
-                        recipient[i] = new setting.constructor();
-                    }
-                    this.proliferate(recipient[i], setting, noOverride);
-                } else {
-                    // Regular primitives are easy to copy otherwise
-                    recipient[i] = setting;
+            // If noOverride, don't override already existing properties
+            if (noOverride && recipient.hasOwnProperty(i)) {
+                continue;
+            }
+
+            // If it's an object, recurse on a new version of it
+            setting = donor[i];
+            if (typeof setting === "object") {
+                if (!recipient.hasOwnProperty(i)) {
+                    recipient[i] = new setting.constructor();
                 }
+                this.proliferate(recipient[i], setting, noOverride);
+            } else {
+                // Regular primitives are easy to copy otherwise
+                recipient[i] = setting;
             }
         }
 
@@ -59,23 +61,25 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
 
         // For each attribute of the donor:
         for (let i in donor) {
-            if (donor.hasOwnProperty(i)) {
-                // If noOverride, don't override already existing properties
-                if (noOverride && recipient[i]) {
-                    continue;
-                }
+            if (!donor.hasOwnProperty(i)) {
+                continue;
+            }
 
-                // If it's an object, recurse on a new version of it
-                setting = donor[i];
-                if (typeof setting === "object") {
-                    if (!recipient[i]) {
-                        recipient[i] = new setting.constructor();
-                    }
-                    this.proliferate(recipient[i], setting, noOverride);
-                } else {
-                    // Regular primitives are easy to copy otherwise
-                    recipient[i] = setting;
+            // If noOverride, don't override already existing properties
+            if (noOverride && recipient[i]) {
+                continue;
+            }
+
+            // If it's an object, recurse on a new version of it
+            setting = donor[i];
+            if (typeof setting === "object") {
+                if (!recipient[i]) {
+                    recipient[i] = new setting.constructor();
                 }
+                this.proliferate(recipient[i], setting, noOverride);
+            } else {
+                // Regular primitives are easy to copy otherwise
+                recipient[i] = setting;
             }
         }
         return recipient;
@@ -97,50 +101,52 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
 
         // For each attribute of the donor:
         for (let i in donor) {
-            if (donor.hasOwnProperty(i)) {
-                // If noOverride, don't override already existing properties
-                if (noOverride && recipient.hasOwnProperty(i)) {
-                    continue;
-                }
+            if (!donor.hasOwnProperty(i)) {
+                continue;
+            }
 
-                setting = donor[i];
+            // If noOverride, don't override already existing properties
+            if (noOverride && recipient.hasOwnProperty(i)) {
+                continue;
+            }
 
-                // Special cases for HTML elements
-                switch (i) {
-                    // Children and options: just append all of them directly
-                    case "children":
-                    case "options":
-                        if (typeof (setting) !== "undefined") {
-                            for (let j: number = 0; j < setting.length; j += 1) {
-                                recipient.appendChild(setting[j]);
-                            }
+            setting = donor[i];
+
+            // Special cases for HTML elements
+            switch (i) {
+                // Children and options: just append all of them directly
+                case "children":
+                case "options":
+                    if (typeof setting !== "undefined") {
+                        for (let j: number = 0; j < setting.length; j += 1) {
+                            recipient.appendChild(setting[j]);
                         }
-                        break;
+                    }
+                    break;
 
-                    // Style: proliferate (instead of making a new Object)
-                    case "style":
-                        this.proliferate(recipient.style, setting);
-                        break;
+                // Style: proliferate (instead of making a new Object)
+                case "style":
+                    this.proliferate(recipient.style, setting);
+                    break;
 
-                    // By default, use the normal proliferate logic
-                    default:
-                        // If it's null, don't do anything (like .textContent)
-                        if (setting === null) {
-                            break;
+                // By default, use the normal proliferate logic
+                default:
+                    // If it's null, don't do anything (like .textContent)
+                    if (setting === null) {
+                        break;
+                    }
+
+                    if (typeof setting === "object") {
+                        // If it's an object, recurse on a new version of it
+                        if (!recipient.hasOwnProperty(i)) {
+                            (recipient as any)[i] = new setting.constructor();
                         }
-
-                        if (typeof setting === "object") {
-                            // If it's an object, recurse on a new version of it
-                            if (!recipient.hasOwnProperty(i)) {
-                                (recipient as any)[i] = new setting.constructor();
-                            }
-                            this.proliferate((recipient as any)[i], setting, noOverride);
-                        } else {
-                            // Regular primitives are easy to copy otherwise
-                            (recipient as any)[i] = setting;
-                        }
-                        break;
-                }
+                        this.proliferate((recipient as any)[i], setting, noOverride);
+                    } else {
+                        // Regular primitives are easy to copy otherwise
+                        (recipient as any)[i] = setting;
+                    }
+                    break;
             }
         }
 

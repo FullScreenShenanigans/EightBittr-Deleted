@@ -42,6 +42,9 @@ var tests = {
     "Utilities": [
         "proliferate",
         "proliferateHard",
+        "proliferateElement",
+        "createElement",
+        "createCanvas",
         "followPathHard",
         "arraySwitch",
         "arrayToBeginning",
