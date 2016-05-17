@@ -17,8 +17,6 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
      * @returns recipient
      */
     public proliferate(recipient: any, donor: any, noOverride?: boolean): any {
-        let setting: any;
-
         // For each attribute of the donor:
         for (let i in donor) {
             if (!donor.hasOwnProperty(i)) {
@@ -31,7 +29,7 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
             }
 
             // If it's an object, recurse on a new version of it
-            setting = donor[i];
+            const setting = donor[i];
             if (typeof setting === "object") {
                 if (!recipient.hasOwnProperty(i)) {
                     recipient[i] = new setting.constructor();
@@ -57,8 +55,6 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
      * @returns recipient
      */
     public proliferateHard(recipient: any, donor: any, noOverride?: boolean): any {
-        let setting: any;
-
         // For each attribute of the donor:
         for (let i in donor) {
             if (!donor.hasOwnProperty(i)) {
@@ -71,7 +67,7 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
             }
 
             // If it's an object, recurse on a new version of it
-            setting = donor[i];
+            const setting = donor[i];
             if (typeof setting === "object") {
                 if (!recipient[i]) {
                     recipient[i] = new setting.constructor();
@@ -97,8 +93,6 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
      * @returns recipient
      */
     public proliferateElement(recipient: HTMLElement, donor: any, noOverride: boolean = false): HTMLElement {
-        let setting: any;
-
         // For each attribute of the donor:
         for (let i in donor) {
             if (!donor.hasOwnProperty(i)) {
@@ -110,7 +104,7 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
                 continue;
             }
 
-            setting = donor[i];
+            const setting = donor[i];
 
             // Special cases for HTML elements
             switch (i) {
@@ -163,7 +157,7 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
      * @returns {HTMLElement}
      */
     public createElement(tag?: string, ...args: any[]): HTMLElement {
-        let element: HTMLElement = document.createElement(tag || "div");
+        const element: HTMLElement = document.createElement(tag || "div");
 
         // For each provided object, add those settings to the element
         for (let i: number = 0; i < args.length; i += 1) {
@@ -181,8 +175,8 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
      * @returns A canvas of the given width and height height.
      */
     public createCanvas(width: number, height: number): HTMLCanvasElement {
-        let canvas: HTMLCanvasElement = document.createElement("canvas");
-        let context: any = canvas.getContext("2d");
+        const canvas: HTMLCanvasElement = document.createElement("canvas");
+        const context: any = canvas.getContext("2d");
 
         canvas.width = width;
         canvas.height = height;

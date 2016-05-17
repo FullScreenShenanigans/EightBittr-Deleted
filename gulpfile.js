@@ -1,6 +1,7 @@
 const gulp = require("gulp");
 const merge = require("merge2");
-const mochaPhantomJS = require('gulp-mocha-phantomjs');
+const mochaPhantomJS = require("gulp-mocha-phantomjs");
+const runSequence = require("run-sequence");
 const ts = require("gulp-typescript");
 const tslint = require("gulp-tslint");
 
@@ -12,7 +13,7 @@ gulp.task("tslint", () => {
 });
 
 gulp.task("tsc", () => {
-    const tsProject = ts.createProject('tsconfig.json');
+    const tsProject = ts.createProject("tsconfig.json");
 
     return tsProject
         .src()
@@ -42,4 +43,6 @@ gulp.task("watch", ["default"], () => {
     gulp.watch("src/**/*.ts", ["default"]);
 });
 
-gulp.task("default", ["tsc", "tslint", "dist"]);
+gulp.task("default", ["tsc", "tslint", "dist"], cb => {
+    runSequence(["test"], cb);
+});
