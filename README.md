@@ -1,23 +1,24 @@
 # EightBittr
 [![Build Status](https://travis-ci.org/FullScreenShenanigans/EightBittr.svg?branch=master)](https://travis-ci.org/FullScreenShenanigans/EightBittr)
+[![NPM version](https://badge.fury.io/js/eightbittr.svg)](http://badge.fury.io/js/eightbittr)
 
-An abstract class used exclusively as the parent of GameStartr. EightBittr 
-contains useful functions for manipulating Things that are independent of the 
-required GameStartr modules.
+An abstract class used exclusively as the parent of GameStartr.
+EightBittr contains useful functions for manipulating Things that are independent of the required GameStartr modules.
 
 
 ## Build Process
 
-EightBittr uses [Grunt](http://gruntjs.com/) to automate building, which 
-requires [Node.js](http://node.js.org). The process is straightforward; see 
-[Grunt's help page](http://gruntjs.com/getting-started) for more info.
+EightBittr uses [Gulp](http://gruntjs.com/) to automate building, which requires [Node.js](http://node.js.org).
 
-To build from scratch, install NodeJS, and run the following commands:
+To build from scratch, install NodeJS and run the following commands:
 
 ```
 npm install
-grunt
+gulp
 ```
 
-The output will now be in the /dist folder. Source codes will be in /dist/src,
-and a zipped version will be in /dist.
+### Individual Gulp tasks
+
+* `gulp tsc` - Runs the [TypeScript](https://typescriptlang.org/) compiler.
+* `gulp tslint` - Runs [TSLint](https://github.com/palantir/tslint).
+* `gulp test` - Runs tests in `tests/`. 
