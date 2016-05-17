@@ -1,32 +1,35 @@
 const gulp = require("gulp");
 const merge = require("merge2");
-const mocha = require("gulp-mocha");
+const mochaPhantomJS = require('gulp-mocha-phantomjs');
 const ts = require("gulp-typescript");
 const tslint = require("gulp-tslint");
 
 gulp.task("tslint", () => {
-    return gulp.src("src/*.ts")
+    return gulp
+        .src("src/*.ts")
         .pipe(tslint())
         .pipe(tslint.report("verbose"));
 });
 
 gulp.task("tsc", () => {
-    return gulp.src("src/**/*.ts")
-        .pipe(ts({
-            noImplicitAny: true
-        }))
-        .pipe(gulp.dest("src"));
+    const tsProject = ts.createProject('tsconfig.json');
+
+    return tsProject
+        .src()
+        .pipe(ts(tsProject))
+        .js.pipe(gulp.dest("src"));
 });
 
 gulp.task("test", () => {
-    return gulp.src("test/unit.js", { read: false })
-        .pipe(mocha({
-            reporter: "spec"
-        }));
+    return gulp
+        .src("test/unit/index.html")
+        .pipe(mochaPhantomJS());
+
 });
 
 gulp.task("dist", function() {
-    var tsResult = gulp.src("src/**/*.ts")
+    const tsResult = gulp
+        .src("src/**/*.ts")
         .pipe(ts());
  
     return merge([

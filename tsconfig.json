@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
-        "module": "es2015",
-        "target": "es2015",
+        "module": "amd",
+        "target": "es3",
         "noImplicitAny": true,
         "sourceMap": true,
         "outDir": "Distribution"

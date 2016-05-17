@@ -109,7 +109,7 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
                 switch (i) {
                     // Children and options: just append all of them directly
                     case "children":
-                    case "children":
+                    case "options":
                         if (typeof (setting) !== "undefined") {
                             for (let j: number = 0; j < setting.length; j += 1) {
                                 recipient.appendChild(setting[j]);
@@ -181,7 +181,7 @@ export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEig
         canvas.width = width;
         canvas.height = height;
 
-        // For speed's sake, disable image smoothing in the first supported browsers
+        // For speed's sake, disable image smoothing in the first supported browser
         if (typeof context.imageSmoothingEnabled !== "undefined") {
             context.imageSmoothingEnabled = false;
         } else if (typeof context.webkitImageSmoothingEnabled !== "undefined") {
