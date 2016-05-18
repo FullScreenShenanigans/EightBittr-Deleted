@@ -3,8 +3,7 @@
         "module": "amd",
         "target": "es3",
         "noImplicitAny": true,
-        "sourceMap": true,
-        "outDir": "Distribution"
+        "outDir": "dist"
     },
     "exclude": [
         "node_modules"
