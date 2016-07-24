@@ -10,7 +10,7 @@
         "Physics/setLeft.ts",
         "Physics/setMid.ts",
         "Physics/setMidObj.ts",
-        "Physics/setMidx.ts",
+        "Physics/setMidX.ts",
         "Physics/setMidXObj.ts",
         "Physics/setMidY.ts",
         "Physics/setMidYObj.ts",
