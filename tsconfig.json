@@ -5,7 +5,12 @@
         "noImplicitAny": true,
         "outDir": "dist"
     },
-    "exclude": [
-        "node_modules"
+    "files": [
+        "src/Component.ts",
+        "src/EightBittr.ts",
+        "src/IEightBittr.ts",
+        "src/IThing.ts",
+        "src/Physics.ts",
+        "src/Utilities.ts"
     ]
 }
