@@ -1,11 +1,11 @@
 import { Component } from "./Component";
 import { IThing } from "./IThing";
-import { IEightBittr } from "./IEightBittr";
+import { EightBittr } from "./EightBittr";
 
 /**
  * Miscellaneous utilities used by EightBittr instances.
  */
-export class Utilities<TIEightBittr extends IEightBittr> extends Component<TIEightBittr> {
+export class Utilities<TEightBittr extends EightBittr> extends Component<TEightBittr> {
     /**
      * "Proliferates" all properties of a donor onto a recipient by copying each
      * of them and recursing onto child Objects. This is a deep copy.

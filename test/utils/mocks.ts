@@ -4,7 +4,7 @@ const mocks = {
     /**
      * 
      */
-    mockEightBittr: (unitsize: number): EightBittr.IEightBittr => {
+    mockEightBittr: (unitsize: number): EightBittr.EightBittr => {
         return new EightBittr.EightBittr(unitsize || 2);
     },
 
@@ -27,14 +27,14 @@ const mocks = {
     /**
      * 
      */
-    mockPhysics: (EightBitter: EightBittr.IEightBittr = mocks.mockEightBittr()): EightBittr.Physics<EightBittr.IEightBittr> => {
+    mockPhysics: (EightBitter: EightBittr.EightBittr = mocks.mockEightBittr()): EightBittr.Physics<EightBittr.IEightBittr> => {
         return EightBitter.physics;
     },
 
     /**
      * 
      */
-    mockUtilities: (EightBitter: EightBittr.IEightBittr = mocks.mockEightBittr()): EightBittr.Utilities<EightBittr.IEightBittr> => {
+    mockUtilities: (EightBitter: EightBittr.EightBittr = mocks.mockEightBittr()): EightBittr.Utilities<EightBittr.IEightBittr> => {
         return EightBitter.utilities;
     }
 };

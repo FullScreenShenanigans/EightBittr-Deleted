@@ -1,4 +1,4 @@
-import { IEightBittr, IEightBittrSettings } from "./IEightBittr";
+import { IEightBittrSettings } from "./IEightBittr";
 import { Physics } from "./Physics";
 import { Utilities } from "./Utilities";
 
@@ -7,21 +7,21 @@ import { Utilities } from "./Utilities";
  * contains useful functions for manipulating Things that are independent of
  * the required GameStartr modules.
  */
-export class EightBittr implements IEightBittr {
+export class EightBittr {
     /**
      * Physics functions used by this instance.
      */
     public physics: Physics<EightBittr>;
 
     /**
-     * How much to expand each pixel from raw sizing measurements to in-game.
-     */
-    public unitsize: number;
-
-    /**
      * Utility functions used by this instance.
      */
     public utilities: Utilities<EightBittr>;
+
+    /**
+     * How much to expand each pixel from raw sizing measurements to in-game.
+     */
+    public unitsize: number;
 
     /**
      * Initializes a new instance of the EightBittr class. Constants are copied
@@ -32,6 +32,13 @@ export class EightBittr implements IEightBittr {
     public constructor(settings: IEightBittrSettings = {}) {
         this.unitsize = settings.unitsize || 1;
 
+        this.resetComponents();
+    }
+
+    /**
+     * 
+     */
+    protected resetComponents(): void {
         this.resetPhysics();
         this.resetUtilities();
     }

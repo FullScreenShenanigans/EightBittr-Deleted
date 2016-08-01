@@ -1,11 +1,11 @@
 import { Component } from "./Component";
-import { IEightBittr } from "./IEightBittr";
+import { EightBittr } from "./EightBittr";
 import { IThing } from "./IThing";
 
 /**
  * Physics functions used by EightBittr instances.
  */
-export class Physics<TIEightBittr extends IEightBittr> extends Component<TIEightBittr> {
+export class Physics<TEightBittr extends EightBittr> extends Component<TEightBittr> {
     /**
      * Shifts a Thing vertically by changing its top and bottom attributes.
      * 

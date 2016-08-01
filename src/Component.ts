@@ -1,20 +1,20 @@
-import { IEightBittr } from "./IEightBittr";
+import { EightBittr } from "./EightBittr";
 
 /**
- * A section of 
+ * A section of EightBittr functionality.
  */
-export abstract class Component<TIEightBittr extends IEightBittr> {
+export abstract class Component<TEightBittr extends EightBittr> {
     /**
      * A container EightBitter to work within.
      */
-    protected EightBitter: TIEightBittr;
+    protected EightBitter: TEightBittr;
 
     /**
      * Initializes a new instance of the EightBittr class.
      * 
      * @param EightBitter   A container EightBitter to work within.
      */
-    public constructor(EightBitter: TIEightBittr) {
+    public constructor(EightBitter: TEightBittr) {
         this.EightBitter = EightBitter;
     }
 }
