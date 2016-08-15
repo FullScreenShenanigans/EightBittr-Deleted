@@ -1,6 +1,6 @@
 import { Component } from "./Component";
-import { IThing } from "./IThing";
 import { EightBittr } from "./EightBittr";
+import { IThing } from "./IThing";
 
 /**
  * Miscellaneous utilities used by EightBittr instances.
@@ -29,7 +29,7 @@ export class Utilities<TEightBittr extends EightBittr> extends Component<TEightB
             }
 
             // If it's an object, recurse on a new version of it
-            const setting = donor[i];
+            const setting: any = donor[i];
             if (typeof setting === "object") {
                 if (!recipient.hasOwnProperty(i)) {
                     recipient[i] = new setting.constructor();
@@ -67,7 +67,7 @@ export class Utilities<TEightBittr extends EightBittr> extends Component<TEightB
             }
 
             // If it's an object, recurse on a new version of it
-            const setting = donor[i];
+            const setting: any = donor[i];
             if (typeof setting === "object") {
                 if (!recipient[i]) {
                     recipient[i] = new setting.constructor();
@@ -104,7 +104,7 @@ export class Utilities<TEightBittr extends EightBittr> extends Component<TEightB
                 continue;
             }
 
-            const setting = donor[i];
+            const setting: any = donor[i];
 
             // Special cases for HTML elements
             switch (i) {
@@ -126,6 +126,7 @@ export class Utilities<TEightBittr extends EightBittr> extends Component<TEightB
                 // By default, use the normal proliferate logic
                 default:
                     // If it's null, don't do anything (like .textContent)
+                    // tslint:disable no-null-keyword
                     if (setting === null) {
                         break;
                     }
