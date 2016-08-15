@@ -1,0 +1,7 @@
+{
+  "package": {
+    "description": "An abstract class used exclusively as the parent of GameStartr.",
+    "name": "EightBittr",
+    "version": "0.5.2"
+  }
+}

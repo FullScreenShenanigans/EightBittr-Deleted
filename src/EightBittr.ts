@@ -7,7 +7,7 @@ import { Utilities } from "./Utilities";
  * contains useful functions for manipulating Things that are independent of
  * the required GameStartr modules.
  */
-export class EightBittr {
+export abstract class EightBittr {
     /**
      * Physics functions used by this instance.
      */
@@ -36,24 +36,7 @@ export class EightBittr {
     }
 
     /**
-     * 
+     * Sets the system components.
      */
-    protected resetComponents(): void {
-        this.resetPhysics();
-        this.resetUtilities();
-    }
-
-    /**
-     * Resets the physics component.
-     */
-    protected resetPhysics() {
-        this.physics = new Physics(this);
-    }
-
-    /**
-     * Resets the utilities component.
-     */
-    protected resetUtilities() {
-        this.utilities = new Utilities(this);
-    }
+    protected abstract resetComponents(): void;
 }
