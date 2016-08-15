@@ -47,10 +47,15 @@ class MochaLoader {
      * Initializes a new instance of the MochaLoader class.
      * 
      * @param mocha   The underlying mocha instance.
+     * @param require   The global require instance.
      */
-    public constructor(mocha: any) {
+    public constructor(mocha: any, require: any) {
         this.mocha = mocha;
         this.mocha.setup("bdd");
+
+        require.config({
+            baseUrl: "../lib"
+        });
     }
 
     /**
@@ -68,7 +73,7 @@ class MochaLoader {
      * @param testName   The name of the test.
      * @param test   A new test.
      */
-    public addTest(testName: string, test: () => void): void {
+    public addTest(testName: string, test: (done?: Function) => void): void {
         if (!this.currentTestPath) {
             throw new Error(`No test path defined before adding test '${testName}'.`);
         }

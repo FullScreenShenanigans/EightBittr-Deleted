@@ -1,11 +1,24 @@
 /// <reference path="../../lib/EightBittr.d.ts" />
 
+/**
+ * Mock implementation of EightBittr.
+ */
+class MockEightBittr extends EightBittr.EightBittr {
+    /**
+     * Sets the system components.
+     */
+    public resetComponents(): void {
+        this.physics = new EightBittr.Physics(this);
+        this.utilities = new EightBittr.Utilities(this);
+    }
+}
+
 const mocks = {
     /**
      * 
      */
     mockEightBittr: (unitsize: number): EightBittr.EightBittr => {
-        return new EightBittr.EightBittr(unitsize || 2);
+        return new MockEightBittr(unitsize || 2);
     },
 
     /**
@@ -27,14 +40,14 @@ const mocks = {
     /**
      * 
      */
-    mockPhysics: (EightBitter: EightBittr.EightBittr = mocks.mockEightBittr()): EightBittr.Physics<EightBittr.IEightBittr> => {
+    mockPhysics: (EightBitter: EightBittr.EightBittr = mocks.mockEightBittr()): EightBittr.Physics<EightBittr.EightBittr> => {
         return EightBitter.physics;
     },
 
     /**
      * 
      */
-    mockUtilities: (EightBitter: EightBittr.EightBittr = mocks.mockEightBittr()): EightBittr.Utilities<EightBittr.IEightBittr> => {
+    mockUtilities: (EightBitter: EightBittr.EightBittr = mocks.mockEightBittr()): EightBittr.Utilities<EightBittr.EightBittr> => {
         return EightBitter.utilities;
     }
 };

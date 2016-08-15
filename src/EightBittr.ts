@@ -3,9 +3,7 @@ import { Physics } from "./Physics";
 import { Utilities } from "./Utilities";
 
 /**
- * An abstract class used exclusively as the parent of GameStartr. EightBittr
- * contains useful functions for manipulating Things that are independent of
- * the required GameStartr modules.
+ * An abstract class used exclusively as the parent of GameStartr.
  */
 export abstract class EightBittr {
     /**
