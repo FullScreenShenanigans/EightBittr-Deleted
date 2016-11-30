@@ -1,6 +1,5 @@
 import { Component } from "./Component";
 import { EightBittr } from "./EightBittr";
-import { IThing } from "./IThing";
 
 /**
  * Miscellaneous utilities used by EightBittr instances.
@@ -250,7 +249,7 @@ export class Utilities<TEightBittr extends EightBittr> extends Component<TEightB
      * @param object   The object to move within the Array.
      * @param array   An Array currently containing the object.
      */
-    public arrayToEnd(object: IThing, array: any[]): void {
+    public arrayToEnd(object: any, array: any[]): void {
         array.splice(array.indexOf(object), 1);
         array.push(object);
     }
@@ -263,7 +262,7 @@ export class Utilities<TEightBittr extends EightBittr> extends Component<TEightB
      * @param array   An Array currently containing the object.
      * @param index   Where the object should be moved to in the Array.
      */
-    public arrayToIndex(object: IThing, array: any[], index: number): void {
+    public arrayToIndex(object: any, array: any[], index: number): void {
         array.splice(array.indexOf(object), 1);
         array.splice(index, 0, object);
     }

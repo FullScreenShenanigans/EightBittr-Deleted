@@ -1,40 +1,19 @@
 {
     "compilerOptions": {
-        "target": "es3",
-        "declaration": false
+        "declaration": true,
+        "module": "amd",
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "outDir": "..",
+        "rootDir": "..",
+        "strictNullChecks": true,
+        "target": "es3"
     },
-    "files": [
-        "utils/mocks.ts",
-        "utils/MochaLoader.ts",
-        "Physics/setBottom.ts",
-        "Physics/setLeft.ts",
-        "Physics/setMid.ts",
-        "Physics/setMidObj.ts",
-        "Physics/setMidX.ts",
-        "Physics/setMidXObj.ts",
-        "Physics/setMidY.ts",
-        "Physics/setMidYObj.ts",
-        "Physics/setRight.ts",
-        "Physics/setTop.ts",
-        "Physics/shiftHoriz.ts",
-        "Physics/shiftVert.ts",
-        "Physics/slideToX.ts",
-        "Physics/slideToY.ts",
-        "Physics/thingAbove.ts",
-        "Physics/thingToLeft.ts",
-        "Physics/updateBottom.ts",
-        "Physics/updateLeft.ts",
-        "Physics/updateRight.ts",
-        "Physics/updateTop.ts",
-        "Utilities/arraySwitch.ts",
-        "Utilities/arrayToBeginning.ts",
-        "Utilities/arrayToEnd.ts",
-        "Utilities/arrayToIndex.ts",
-        "Utilities/createCanvas.ts",
-        "Utilities/createElement.ts",
-        "Utilities/followPathHard.ts",
-        "Utilities/proliferate.ts",
-        "Utilities/proliferateElement.ts",
-        "Utilities/proliferateHard.ts"
+    "include": [
+        "./**/*.ts"
     ]
 }

@@ -1,16 +1,17 @@
 {
     "compilerOptions": {
+        "declaration": true,
         "module": "amd",
-        "target": "es3",
         "noImplicitAny": true,
-        "outDir": "dist"
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "strictNullChecks": true,
+        "target": "es3"
     },
-    "files": [
-        "src/Component.ts",
-        "src/EightBittr.ts",
-        "src/IEightBittr.ts",
-        "src/IThing.ts",
-        "src/Physics.ts",
-        "src/Utilities.ts"
+    "include": [
+        "./src/**/*.ts"
     ]
 }

@@ -1,12 +1,9 @@
-/// <reference path="../../node_modules/@types/chai/index.d.ts" />
-/// <reference path="../../node_modules/@types/mocha/index.d.ts" />
-/// <reference path="../../lib/EightBittr.d.ts" />
-/// <reference path="../utils/MochaLoader.ts" />
-/// <reference path="../utils/mocks.ts" />
+import { mochaLoader } from "../main";
+import { stubUtilities } from "../utils/fakes";
 
-mochaLoader.addTest("follows an empty path nowhere", (): void => {
+mochaLoader.it("follows an empty path nowhere", (): void => {
     // Arrange
-    const utilities = mocks.mockUtilities();
+    const utilities = stubUtilities();
     const path = [];
     const object = {};
 
@@ -17,9 +14,9 @@ mochaLoader.addTest("follows an empty path nowhere", (): void => {
     chai.expect(result).to.be.equal(object);
 });
 
-mochaLoader.addTest("follows an path of size 1", (): void => {
+mochaLoader.it("follows a path of size 1", (): void => {
     // Arrange
-    const utilities = mocks.mockUtilities();
+    const utilities = stubUtilities();
     const path = ["foo"];
     const object = {
         foo: {}
@@ -32,9 +29,9 @@ mochaLoader.addTest("follows an path of size 1", (): void => {
     chai.expect(result).to.be.equal(object.foo);
 });
 
-mochaLoader.addTest("follows an path of size 2", (): void => {
+mochaLoader.it("follows a path of size 2", (): void => {
     // Arrange
-    const utilities = mocks.mockUtilities();
+    const utilities = stubUtilities();
     const path = ["foo", "bar"];
     const object = {
         foo: {
@@ -49,9 +46,9 @@ mochaLoader.addTest("follows an path of size 2", (): void => {
     chai.expect(result).to.be.equal(object.foo.bar);
 });
 
-mochaLoader.addTest("follows an path of size 3", (): void => {
+mochaLoader.it("follows a path of size 3", (): void => {
     // Arrange
-    const utilities = mocks.mockUtilities();
+    const utilities = stubUtilities();
     const path = ["foo", "bar", "baz"];
     const object = {
         foo: {
@@ -68,9 +65,9 @@ mochaLoader.addTest("follows an path of size 3", (): void => {
     chai.expect(result).to.be.equal(object.foo.bar.baz);
 });
 
-mochaLoader.addTest("respects a starting 0 index", (): void => {
+mochaLoader.it("respects a starting 0 index", (): void => {
     // Arrange
-    const utilities = mocks.mockUtilities();
+    const utilities = stubUtilities();
     const path = ["foo", "bar", "baz"];
     const object = {
         foo: {
@@ -87,9 +84,9 @@ mochaLoader.addTest("respects a starting 0 index", (): void => {
     chai.expect(result).to.be.equal(object.foo.bar.baz);
 });
 
-mochaLoader.addTest("respects a starting non-zero index", (): void => {
+mochaLoader.it("respects a starting non-zero index", (): void => {
     // Arrange
-    const utilities = mocks.mockUtilities();
+    const utilities = stubUtilities();
     const path = ["foo", "bar", "baz"];
     const object = {
         bar: {
@@ -104,9 +101,9 @@ mochaLoader.addTest("respects a starting non-zero index", (): void => {
     chai.expect(result).to.be.equal(object.bar.baz);
 });
 
-mochaLoader.addTest("returns undefined when part of the path does not exist", (): void => {
+mochaLoader.it("returns undefined when part of the path does not exist", (): void => {
     // Arrange
-    const utilities = mocks.mockUtilities();
+    const utilities = stubUtilities();
     const path = ["foo"];
     const object = {};
 

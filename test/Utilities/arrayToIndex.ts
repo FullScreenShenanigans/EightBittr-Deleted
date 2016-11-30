@@ -1,12 +1,9 @@
-/// <reference path="../../node_modules/@types/chai/index.d.ts" />
-/// <reference path="../../node_modules/@types/mocha/index.d.ts" />
-/// <reference path="../../lib/EightBittr.d.ts" />
-/// <reference path="../utils/MochaLoader.ts" />
-/// <reference path="../utils/mocks.ts" />
+import { mochaLoader } from "../main";
+import { stubUtilities } from "../utils/fakes";
 
-mochaLoader.addTest("splices an object from the beginning to the end of an array", (): void => {
+mochaLoader.it("splices an object from the beginning to the end of an array", (): void => {
     // Arrange
-    const utilities = mocks.mockUtilities();
+    const utilities = stubUtilities();
     const object = "foo";
     const array = [object, "a", "b"];
 
@@ -17,9 +14,9 @@ mochaLoader.addTest("splices an object from the beginning to the end of an array
     chai.expect(array.indexOf(object)).to.equal(array.length - 1);
 });
 
-mochaLoader.addTest("splices an object from the end to the beginning of an array", (): void => {
+mochaLoader.it("splices an object from the end to the beginning of an array", (): void => {
     // Arrange
-    const utilities = mocks.mockUtilities();
+    const utilities = stubUtilities();
     const object = "foo";
     const array = ["a", "b", object];
 
@@ -30,9 +27,9 @@ mochaLoader.addTest("splices an object from the end to the beginning of an array
     chai.expect(array.indexOf(object)).to.equal(0);
 });
 
-mochaLoader.addTest("splices an non-member to the beginning of an array", (): void => {
+mochaLoader.it("splices an non-member to the beginning of an array", (): void => {
     // Arrange
-    const utilities = mocks.mockUtilities();
+    const utilities = stubUtilities();
     const object = "foo";
     const array = ["a", "b"];
 
@@ -43,9 +40,9 @@ mochaLoader.addTest("splices an non-member to the beginning of an array", (): vo
     chai.expect(array.indexOf(object)).to.equal(0);
 });
 
-mochaLoader.addTest("splices a non-member to the end of an array", (): void => {
+mochaLoader.it("splices a non-member to the end of an array", (): void => {
     // Arrange
-    const utilities = mocks.mockUtilities();
+    const utilities = stubUtilities();
     const object = "foo";
     const array = ["a", "b"];
 

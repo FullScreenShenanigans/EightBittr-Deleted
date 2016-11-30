@@ -1,12 +1,9 @@
-/// <reference path="../../node_modules/@types/chai/index.d.ts" />
-/// <reference path="../../node_modules/@types/mocha/index.d.ts" />
-/// <reference path="../../lib/EightBittr.d.ts" />
-/// <reference path="../utils/MochaLoader.ts" />
-/// <reference path="../utils/mocks.ts" />
+import { mochaLoader } from "../main";
+import { stubUtilities } from "../utils/fakes";
 
-mochaLoader.addTest("adds shallow properties to a recipient", (): void => {
+mochaLoader.it("adds shallow properties to a recipient", (): void => {
     // Arrange
-    const utilities = mocks.mockUtilities();
+    const utilities = stubUtilities();
     const recipient: any = document.createElement("div");
     const donor: any = {
         textContent: "text"
@@ -19,9 +16,9 @@ mochaLoader.addTest("adds shallow properties to a recipient", (): void => {
     chai.expect(recipient.textContent).to.be.equal(donor.textContent);
 });
 
-mochaLoader.addTest("overrides existing properties", (): void => {
+mochaLoader.it("overrides existing properties", (): void => {
     // Arrange
-    const utilities = mocks.mockUtilities();
+    const utilities = stubUtilities();
     const recipient: any = {
         textContent: false
     };
@@ -36,9 +33,9 @@ mochaLoader.addTest("overrides existing properties", (): void => {
     chai.expect(donor.foo).to.be.equal(recipient.foo);
 });
 
-mochaLoader.addTest("doesn't override existing properties when noOverrides is true", (): void => {
+mochaLoader.it("doesn't override existing properties when noOverrides is true", (): void => {
     // Arrange
-    const utilities = mocks.mockUtilities();
+    const utilities = stubUtilities();
     const recipient: any = document.createElement("div");
     recipient.textContent = "foo";
     const donor: any = {
@@ -52,9 +49,9 @@ mochaLoader.addTest("doesn't override existing properties when noOverrides is tr
     chai.expect(recipient.textContent).to.not.be.equal(donor.foo);
 });
 
-mochaLoader.addTest("adds styles", (): void => {
+mochaLoader.it("adds styles", (): void => {
     // Arrange
-    const utilities = mocks.mockUtilities();
+    const utilities = stubUtilities();
     const recipient: any = document.createElement("div");
     const donor: any = {
         style: {
@@ -69,9 +66,9 @@ mochaLoader.addTest("adds styles", (): void => {
     chai.expect(recipient.style.color).to.be.equal(donor.style.color);
 });
 
-mochaLoader.addTest("appends children", (): void => {
+mochaLoader.it("appends children", (): void => {
     // Arrange
-    const utilities = mocks.mockUtilities();
+    const utilities = stubUtilities();
     const recipient: any = document.createElement("div");
     const donor: any = {
         children: [
@@ -88,9 +85,9 @@ mochaLoader.addTest("appends children", (): void => {
     chai.expect(children).to.be.deep.equal(donor.children);
 });
 
-mochaLoader.addTest("appends options", (): void => {
+mochaLoader.it("appends options", (): void => {
     // Arrange
-    const utilities = mocks.mockUtilities();
+    const utilities = stubUtilities();
     const recipient: any = document.createElement("select");
     const donor: any = {
         children: [

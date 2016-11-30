@@ -1,14 +1,10 @@
-/// <reference path="../../node_modules/@types/chai/index.d.ts" />
-/// <reference path="../../node_modules/@types/mocha/index.d.ts" />
-/// <reference path="../../lib/EightBittr.d.ts" />
-/// <reference path="../utils/MochaLoader.ts" />
-/// <reference path="../utils/mocks.ts" />
+import { mochaLoader } from "../main";
+import { stubEightBittr, stubPhysics, stubThing } from "../utils/fakes";
 
-mochaLoader.addTest("sets right", (): void => {
+mochaLoader.it("sets right", (): void => {
     // Arrange
-    const physics = mocks.mockPhysics();
-    const thing = mocks.mockThing();
-    const tight = thing.right;
+    const physics = stubPhysics();
+    const thing = stubThing();
     const newRight = 3.5;
 
     // Act
@@ -18,10 +14,10 @@ mochaLoader.addTest("sets right", (): void => {
     chai.expect(thing.right).to.be.equal(newRight);
 });
 
-mochaLoader.addTest("adjusts left", (): void => {
+mochaLoader.it("adjusts left", (): void => {
     // Arrange
-    const EightBitter = mocks.mockEightBittr();
-    const thing = mocks.mockThing();
+    const EightBitter = stubEightBittr();
+    const thing = stubThing();
     const newRight = 3.5;
     const newLeft = newRight - thing.width * EightBitter.unitsize;
 

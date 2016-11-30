@@ -1,13 +1,10 @@
-/// <reference path="../../node_modules/@types/chai/index.d.ts" />
-/// <reference path="../../node_modules/@types/mocha/index.d.ts" />
-/// <reference path="../../lib/EightBittr.d.ts" />
-/// <reference path="../utils/MochaLoader.ts" />
-/// <reference path="../utils/mocks.ts" />
+import { mochaLoader } from "../main";
+import { stubPhysics, stubThing } from "../utils/fakes";
 
-mochaLoader.addTest("shifts vertically", (): void => {
+mochaLoader.it("shifts vertically", (): void => {
     // Arrange
-    const physics = mocks.mockPhysics();
-    const thing = mocks.mockThing();
+    const physics = stubPhysics();
+    const thing = stubThing();
     const top = thing.top;
     const bottom = thing.bottom;
     const amount = 7;
@@ -20,10 +17,10 @@ mochaLoader.addTest("shifts vertically", (): void => {
     chai.expect(thing.bottom).to.be.equal(bottom + amount);
 });
 
-mochaLoader.addTest("doesn't shift horizontally", (): void => {
+mochaLoader.it("doesn't shift horizontally", (): void => {
     // Arrange
-    const physics = mocks.mockPhysics();
-    const thing = mocks.mockThing();
+    const physics = stubPhysics();
+    const thing = stubThing();
     const left = thing.left;
     const right = thing.right;
 

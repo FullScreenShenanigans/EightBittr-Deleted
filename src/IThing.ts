@@ -1,6 +1,5 @@
 /**
- * A basic representation of an in-game Thing. Size, velocity, and position
- * are stored, as well as a reference to the parent IEightBittr.
+ * A basic representation of an in-game Thing.
  */
 export interface IThing {
     /**

@@ -1,14 +1,10 @@
-/// <reference path="../../node_modules/@types/chai/index.d.ts" />
-/// <reference path="../../node_modules/@types/mocha/index.d.ts" />
-/// <reference path="../../lib/EightBittr.d.ts" />
-/// <reference path="../utils/MochaLoader.ts" />
-/// <reference path="../utils/mocks.ts" />
+import { mochaLoader } from "../main";
+import { stubEightBittr, stubPhysics, stubThing } from "../utils/fakes";
 
-mochaLoader.addTest("sets bottom", (): void => {
+mochaLoader.it("sets bottom", (): void => {
     // Arrange
-    const physics = mocks.mockPhysics();
-    const thing = mocks.mockThing();
-    const top = thing.top;
+    const physics = stubPhysics();
+    const thing = stubThing();
     const newBottom = 3.5;
 
     // Act
@@ -18,16 +14,16 @@ mochaLoader.addTest("sets bottom", (): void => {
     chai.expect(thing.bottom).to.be.equal(newBottom);
 });
 
-mochaLoader.addTest("adjusts top", (): void => {
+mochaLoader.it("adjusts top", (): void => {
     // Arrange
-    const EightBitter = mocks.mockEightBittr();
-    const thing = mocks.mockThing();
+    const EightBitter = stubEightBittr();
+    const thing = stubThing();
     const newBottom = 3.5;
-    const newTop = newBottom + thing.height * EightBitter.unitsize;
+    const newTop = newBottom - thing.height * EightBitter.unitsize;
 
     // Act
     EightBitter.physics.setBottom(thing, newBottom);
 
     // Assert
-    chai.expect(thing.bottom).to.be.equal(newBottom);
+    chai.expect(thing.top).to.be.equal(newTop);
 });

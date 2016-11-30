@@ -1,13 +1,10 @@
-/// <reference path="../../node_modules/@types/chai/index.d.ts" />
-/// <reference path="../../node_modules/@types/mocha/index.d.ts" />
-/// <reference path="../../lib/EightBittr.d.ts" />
-/// <reference path="../utils/MochaLoader.ts" />
-/// <reference path="../utils/mocks.ts" />
+import { mochaLoader } from "../main";
+import { stubPhysics, stubThing } from "../utils/fakes";
 
-mochaLoader.addTest("shifts completely to the left with no limit", (): void => {
+mochaLoader.it("shifts completely to the left with no limit", (): void => {
     // Arrange
-    const physics = mocks.mockPhysics();
-    const thing = mocks.mockThing();
+    const physics = stubPhysics();
+    const thing = stubThing();
     const midX = 35;
     const newMidX = 11.7;
 
@@ -20,10 +17,10 @@ mochaLoader.addTest("shifts completely to the left with no limit", (): void => {
     chai.expect(physics.getMidX(thing)).to.be.equal(newMidX);
 });
 
-mochaLoader.addTest("shifts completely to the right with no limit", (): void => {
+mochaLoader.it("shifts completely to the right with no limit", (): void => {
     // Arrange
-    const physics = mocks.mockPhysics();
-    const thing = mocks.mockThing();
+    const physics = stubPhysics();
+    const thing = stubThing();
     const midX = 11.7;
     const newMidX = 35;
 
@@ -36,10 +33,10 @@ mochaLoader.addTest("shifts completely to the right with no limit", (): void => 
     chai.expect(physics.getMidX(thing)).to.be.equal(newMidX);
 });
 
-mochaLoader.addTest("shifts completely to the left with a large limit", (): void => {
+mochaLoader.it("shifts completely to the left with a large limit", (): void => {
     // Arrange
-    const physics = mocks.mockPhysics();
-    const thing = mocks.mockThing();
+    const physics = stubPhysics();
+    const thing = stubThing();
     const midX = 35;
     const newMidX = 11.7;
 
@@ -52,10 +49,10 @@ mochaLoader.addTest("shifts completely to the left with a large limit", (): void
     chai.expect(physics.getMidX(thing)).to.be.equal(newMidX);
 });
 
-mochaLoader.addTest("shifts completely to the right with a large limit", (): void => {
+mochaLoader.it("shifts completely to the right with a large limit", (): void => {
     // Arrange
-    const physics = mocks.mockPhysics();
-    const thing = mocks.mockThing();
+    const physics = stubPhysics();
+    const thing = stubThing();
     const midX = 11.7;
     const newMidX = 35;
 
@@ -68,10 +65,10 @@ mochaLoader.addTest("shifts completely to the right with a large limit", (): voi
     chai.expect(physics.getMidX(thing)).to.be.equal(newMidX);
 });
 
-mochaLoader.addTest("shifts partially to the left with a limit", (): void => {
+mochaLoader.it("shifts partially to the left with a limit", (): void => {
     // Arrange
-    const physics = mocks.mockPhysics();
-    const thing = mocks.mockThing();
+    const physics = stubPhysics();
+    const thing = stubThing();
     const midX = 35;
     const newMidX = 11.7;
     const limit = 7;
@@ -85,10 +82,10 @@ mochaLoader.addTest("shifts partially to the left with a limit", (): void => {
     chai.expect(physics.getMidX(thing)).to.be.equal(midX - limit);
 });
 
-mochaLoader.addTest("shifts partially to the right with a limit", (): void => {
+mochaLoader.it("shifts partially to the right with a limit", (): void => {
     // Arrange
-    const physics = mocks.mockPhysics();
-    const thing = mocks.mockThing();
+    const physics = stubPhysics();
+    const thing = stubThing();
     const midX = 11.7;
     const newMidX = 35;
     const limit = 7;

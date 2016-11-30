@@ -1,14 +1,11 @@
-/// <reference path="../../node_modules/@types/chai/index.d.ts" />
-/// <reference path="../../node_modules/@types/mocha/index.d.ts" />
-/// <reference path="../../lib/EightBittr.d.ts" />
-/// <reference path="../utils/MochaLoader.ts" />
-/// <reference path="../utils/mocks.ts" />
+import { mochaLoader } from "../main";
+import { stubEightBittr, stubThing } from "../utils/fakes";
 
-mochaLoader.addTest("shifts left", (): void => {
+mochaLoader.it("shifts left", (): void => {
     // Arrange
-    const EightBitter = mocks.mockEightBittr();
-    const positioner = mocks.mockThing();
-    const thing = mocks.mockThing();
+    const EightBitter = stubEightBittr();
+    const positioner = stubThing();
+    const thing = stubThing();
     const width = thing.width;
     const newMidX = 3.5;
 
@@ -21,11 +18,11 @@ mochaLoader.addTest("shifts left", (): void => {
     chai.expect(thing.left).to.be.equal(newMidX - width * EightBitter.unitsize / 2);
 });
 
-mochaLoader.addTest("shifts right", (): void => {
+mochaLoader.it("shifts right", (): void => {
     // Arrange
-    const EightBitter = mocks.mockEightBittr();
-    const positioner = mocks.mockThing();
-    const thing = mocks.mockThing();
+    const EightBitter = stubEightBittr();
+    const positioner = stubThing();
+    const thing = stubThing();
     const width = thing.width;
     const newMidX = 3.5;
 
