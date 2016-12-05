@@ -4,23 +4,10 @@ import { Physics } from "../../src/Physics";
 import { Utilities } from "../../src/Utilities";
 
 /**
- * Mock implementation of EightBittr.
- */
-export class MockEightBittr extends EightBittr {
-    /**
-     * Sets the system components.
-     */
-    public resetComponents(): void {
-        this.physics = new Physics(this);
-        this.utilities = new Utilities(this);
-    }
-}
-
-/**
  * 
  */
 export function stubEightBittr(unitsize: number = 2): EightBittr {
-    return new MockEightBittr(unitsize);
+    return new EightBittr(unitsize);
 }
 
 /**

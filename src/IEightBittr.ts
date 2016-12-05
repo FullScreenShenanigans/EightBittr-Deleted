@@ -1,5 +1,5 @@
 /**
- * Settings to initialize a new instance of the IEightBittr interface.
+ * Settings to initialize a new instance of the EightBittr class.
  */
 export interface IEightBittrSettings {
     /**

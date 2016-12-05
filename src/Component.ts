@@ -5,16 +5,16 @@ import { EightBittr } from "./EightBittr";
  */
 export abstract class Component<TEightBittr extends EightBittr> {
     /**
-     * A container EightBitter to work within.
+     * A container EightBittr to work within.
      */
-    protected EightBitter: TEightBittr;
+    public readonly eightBitter: TEightBittr;
 
     /**
      * Initializes a new instance of the EightBittr class.
      * 
-     * @param EightBitter   A container EightBitter to work within.
+     * @param EightBitter   A container EightBittr to work within.
      */
     public constructor(EightBitter: TEightBittr) {
-        this.EightBitter = EightBitter;
+        this.eightBitter = EightBitter;
     }
 }

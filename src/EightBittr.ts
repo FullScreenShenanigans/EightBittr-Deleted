@@ -3,9 +3,9 @@ import { Physics } from "./Physics";
 import { Utilities } from "./Utilities";
 
 /**
- * An abstract class used exclusively as the parent of GameStartr.
+ * An base class used exclusively as the parent of GameStartr.
  */
-export abstract class EightBittr {
+export class EightBittr {
     /**
      * Physics functions used by this instance.
      */
@@ -25,10 +25,23 @@ export abstract class EightBittr {
      * Initializes a new instance of the EightBittr class. Constants are copied
      * onto the EightBittr from the designated source.
      * 
-     * @param settings   Any optional custom settings.
+     * @param settings   Settings to initialize a new instance of the EightBittr class.
      */
     public constructor(settings: IEightBittrSettings = {}) {
         this.unitsize = settings.unitsize || 1;
+
+        this.reset(settings);
+    }
+
+    /**
+     * Resets the system components.
+     * 
+     * @param settings   Settings to initialize a new instance of the EightBittr class.
+     */
+    public reset(settings: IEightBittrSettings = {}): void {
+        /* tslint:disable no-unused-expression */
+        settings;
+        /* tslint:enable no-unused-expression */
 
         this.resetComponents();
     }
@@ -36,5 +49,8 @@ export abstract class EightBittr {
     /**
      * Sets the system components.
      */
-    protected abstract resetComponents(): void;
+    protected resetComponents(): void {
+        this.physics = new Physics(this);
+        this.utilities = new Utilities(this);
+    }
 }
