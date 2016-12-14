@@ -1,4 +1,3 @@
-import { IEightBittrSettings } from "./IEightBittr";
 import { Physics } from "./Physics";
 import { Utilities } from "./Utilities";
 
@@ -9,17 +8,12 @@ export class EightBittr {
     /**
      * Physics functions used by this instance.
      */
-    public physics: Physics<EightBittr>;
+    public physics: Physics;
 
     /**
      * Utility functions used by this instance.
      */
-    public utilities: Utilities<EightBittr>;
-
-    /**
-     * How much to expand each pixel from raw sizing measurements to in-game.
-     */
-    public unitsize: number;
+    public utilities: Utilities;
 
     /**
      * Initializes a new instance of the EightBittr class. Constants are copied
@@ -27,9 +21,7 @@ export class EightBittr {
      * 
      * @param settings   Settings to initialize a new instance of the EightBittr class.
      */
-    public constructor(settings: IEightBittrSettings = {}) {
-        this.unitsize = settings.unitsize || 1;
-
+    public constructor(settings: any = {}) {
         this.reset(settings);
     }
 
@@ -38,7 +30,7 @@ export class EightBittr {
      * 
      * @param settings   Settings to initialize a new instance of the EightBittr class.
      */
-    public reset(settings: IEightBittrSettings = {}): void {
+    public reset(settings: any = {}): void {
         /* tslint:disable no-unused-expression */
         settings;
         /* tslint:enable no-unused-expression */
@@ -50,7 +42,7 @@ export class EightBittr {
      * Sets the system components.
      */
     protected resetComponents(): void {
-        this.physics = new Physics(this);
-        this.utilities = new Utilities(this);
+        this.physics = new Physics();
+        this.utilities = new Utilities();
     }
 }

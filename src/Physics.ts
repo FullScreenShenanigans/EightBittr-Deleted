@@ -1,11 +1,9 @@
-import { Component } from "./Component";
-import { EightBittr } from "./EightBittr";
 import { IThing } from "./IThing";
 
 /**
  * Physics functions used by EightBittr instances.
  */
-export class Physics<TEightBittr extends EightBittr> extends Component<TEightBittr> {
+export class Physics {
     /**
      * Shifts a Thing vertically by changing its top and bottom attributes.
      * 
@@ -37,7 +35,7 @@ export class Physics<TEightBittr extends EightBittr> extends Component<TEightBit
      */
     public setTop(thing: IThing, top: number): void {
         thing.top = top;
-        thing.bottom = thing.top + thing.height * this.eightBitter.unitsize;
+        thing.bottom = thing.top + thing.height;
     }
 
     /**
@@ -49,7 +47,7 @@ export class Physics<TEightBittr extends EightBittr> extends Component<TEightBit
      */
     public setRight(thing: IThing, right: number): void {
         thing.right = right;
-        thing.left = thing.right - thing.width * this.eightBitter.unitsize;
+        thing.left = thing.right - thing.width;
     }
 
     /**
@@ -61,7 +59,7 @@ export class Physics<TEightBittr extends EightBittr> extends Component<TEightBit
      */
     public setBottom(thing: IThing, bottom: number): void {
         thing.bottom = bottom;
-        thing.top = thing.bottom - thing.height * this.eightBitter.unitsize;
+        thing.top = thing.bottom - thing.height;
     }
 
     /**
@@ -73,7 +71,7 @@ export class Physics<TEightBittr extends EightBittr> extends Component<TEightBit
      */
     public setLeft(thing: IThing, left: number): void {
         thing.left = left;
-        thing.right = thing.left + thing.width * this.eightBitter.unitsize;
+        thing.right = thing.left + thing.width;
     }
 
     /**
@@ -83,9 +81,7 @@ export class Physics<TEightBittr extends EightBittr> extends Component<TEightBit
      * @param x   Where the Thing's horizontal midpoint should be.
      */
     public setMidX(thing: IThing, x: number): void {
-        this.setLeft(
-            thing,
-            x - thing.width * this.eightBitter.unitsize / 2);
+        this.setLeft(thing, x - thing.width / 2);
     }
 
     /**
@@ -95,9 +91,7 @@ export class Physics<TEightBittr extends EightBittr> extends Component<TEightBit
      * @param y   Where the Thing's vertical midpoint should be.
      */
     public setMidY(thing: IThing, y: number): void {
-        this.setTop(
-            thing,
-            y - thing.height * this.eightBitter.unitsize / 2);
+        this.setTop(thing, y - thing.height / 2);
     }
 
     /**
@@ -117,7 +111,7 @@ export class Physics<TEightBittr extends EightBittr> extends Component<TEightBit
      * @returns The horizontal midpoint of the Thing.
      */
     public getMidX(thing: IThing): number {
-        return thing.left + thing.width * this.eightBitter.unitsize / 2;
+        return thing.left + thing.width / 2;
     }
 
     /**
@@ -125,7 +119,7 @@ export class Physics<TEightBittr extends EightBittr> extends Component<TEightBit
      * @returns The vertical midpoint of the Thing.
      */
     public getMidY(thing: IThing): number {
-        return thing.top + thing.height * this.eightBitter.unitsize / 2;
+        return thing.top + thing.height / 2;
     }
 
     /**
@@ -148,9 +142,7 @@ export class Physics<TEightBittr extends EightBittr> extends Component<TEightBit
      * @param other   The Thing whose horizontal midpoint is referenced.
      */
     public setMidXObj(thing: IThing, other: IThing): void {
-        this.setLeft(
-            thing,
-            this.getMidX(other) - (thing.width * this.eightBitter.unitsize / 2));
+        this.setLeft(thing, this.getMidX(other) - (thing.width / 2));
     }
 
     /**
@@ -161,9 +153,7 @@ export class Physics<TEightBittr extends EightBittr> extends Component<TEightBit
      * @param other   The Thing whose vertical midpoint is referenced.
      */
     public setMidYObj(thing: IThing, other: IThing): void {
-        this.setTop(
-            thing,
-            this.getMidY(other) - (thing.height * this.eightBitter.unitsize / 2));
+        this.setTop(thing, this.getMidY(other) - (thing.height / 2));
     }
 
     /**
@@ -195,7 +185,7 @@ export class Physics<TEightBittr extends EightBittr> extends Component<TEightBit
      */
     public updateTop(thing: IThing, dy: number = 0): void {
         thing.top += dy;
-        thing.bottom = thing.top + thing.height * this.eightBitter.unitsize;
+        thing.bottom = thing.top + thing.height;
     }
 
     /**
@@ -207,7 +197,7 @@ export class Physics<TEightBittr extends EightBittr> extends Component<TEightBit
      */
     public updateRight(thing: IThing, dx: number = 0): void {
         thing.right += dx;
-        thing.left = thing.right - thing.width * this.eightBitter.unitsize;
+        thing.left = thing.right - thing.width;
     }
 
     /**
@@ -219,7 +209,7 @@ export class Physics<TEightBittr extends EightBittr> extends Component<TEightBit
      */
     public updateBottom(thing: IThing, dy: number = 0): void {
         thing.bottom += dy;
-        thing.top = thing.bottom - thing.height * this.eightBitter.unitsize;
+        thing.top = thing.bottom - thing.height;
     }
 
     /**
@@ -231,7 +221,7 @@ export class Physics<TEightBittr extends EightBittr> extends Component<TEightBit
      */
     public updateLeft(thing: IThing, dx: number = 0): void {
         thing.left += dx;
-        thing.right = thing.left + thing.width * this.eightBitter.unitsize;
+        thing.right = thing.left + thing.width;
     }
 
     /**

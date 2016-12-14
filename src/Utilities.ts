@@ -1,10 +1,7 @@
-import { Component } from "./Component";
-import { EightBittr } from "./EightBittr";
-
 /**
  * Miscellaneous utilities used by EightBittr instances.
  */
-export class Utilities<TEightBittr extends EightBittr> extends Component<TEightBittr> {
+export class Utilities {
     /**
      * "Proliferates" all properties of a donor onto a recipient by copying each
      * of them and recursing onto child Objects. This is a deep copy.
