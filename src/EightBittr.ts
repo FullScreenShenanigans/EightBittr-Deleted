@@ -1,5 +1,5 @@
-import { Physics } from "./Physics";
-import { Utilities } from "./Utilities";
+import { Physics } from "./components/Physics";
+import { Utilities } from "./components/Utilities";
 
 /**
  * An base class used exclusively as the parent of GameStartr.

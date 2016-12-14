@@ -1,4 +1,4 @@
-import { IThing } from "./IThing";
+import { IThing } from "../IThing";
 
 /**
  * Physics functions used by EightBittr instances.
