@@ -1,7 +1,7 @@
+import { Physics } from "../../src/components/Physics";
+import { Utilities } from "../../src/components/Utilities";
 import { EightBittr } from "../../src/EightBittr";
 import { IThing } from "../../src/IThing";
-import { Physics } from "../../src/Physics";
-import { Utilities } from "../../src/Utilities";
 
 /**
  * 
@@ -29,13 +29,13 @@ export function stubThing(): IThing {
 /**
  * 
  */
-export function stubPhysics(EightBitter: EightBittr = stubEightBittr()): Physics<EightBittr> {
-    return EightBitter.physics;
+export function stubPhysics(eightBitter: EightBittr = stubEightBittr()): Physics {
+    return eightBitter.physics;
 }
 
 /**
  * 
  */
-export function stubUtilities(EightBitter: EightBittr = stubEightBittr()): Utilities<EightBittr> {
-    return EightBitter.utilities;
+export function stubUtilities(eightBitter: EightBittr = stubEightBittr()): Utilities {
+    return eightBitter.utilities;
 }

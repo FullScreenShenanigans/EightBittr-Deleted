@@ -19,7 +19,7 @@ mochaLoader.it("adjusts bottom", (): void => {
     const EightBitter = stubEightBittr();
     const thing = stubThing();
     const newTop = 3.5;
-    const newbottom = newTop + thing.height * EightBitter.unitsize;
+    const newbottom = newTop + thing.height;
 
     // Act
     EightBitter.physics.setTop(thing, newTop);
