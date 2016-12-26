@@ -18,7 +18,7 @@ export class StubEightBittr extends EightBittr {
 /**
  * 
  */
-export function stubEightBittr(unitsize: number = 2): EightBittr {
+export function stubEightBittr(unitsize: number = 2): StubEightBittr {
     return new StubEightBittr(unitsize);
 }
 
@@ -41,13 +41,13 @@ export function stubThing(): IThing {
 /**
  * 
  */
-export function stubPhysics(eightBitter: EightBittr = stubEightBittr()): Physics<StubEightBittr> {
+export function stubPhysics(eightBitter: StubEightBittr = stubEightBittr()): Physics<EightBittr> {
     return eightBitter.physics;
 }
 
 /**
  * 
  */
-export function stubUtilities(eightBitter: EightBittr = stubEightBittr()): Utilities<StubEightBittr> {
+export function stubUtilities(eightBitter: StubEightBittr = stubEightBittr()): Utilities<EightBittr> {
     return eightBitter.utilities;
 }
