@@ -1,9 +1,11 @@
+import { Component } from "../Component";
+import { EightBittr } from "../EightBittr";
 import { IThing } from "../IThing";
 
 /**
  * Physics functions used by EightBittr instances.
  */
-export class Physics {
+export class Physics<TGameStartr extends EightBittr> extends Component<TGameStartr> {
     /**
      * Shifts a Thing vertically by changing its top and bottom attributes.
      * 

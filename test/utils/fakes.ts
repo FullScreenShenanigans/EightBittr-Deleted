@@ -6,8 +6,20 @@ import { IThing } from "../../src/IThing";
 /**
  * 
  */
+export class StubEightBittr extends EightBittr {
+    /**
+     * 
+     */
+    protected resetModules(): void {
+        // ...
+    }
+}
+
+/**
+ * 
+ */
 export function stubEightBittr(unitsize: number = 2): EightBittr {
-    return new EightBittr(unitsize);
+    return new StubEightBittr(unitsize);
 }
 
 /**
@@ -29,13 +41,13 @@ export function stubThing(): IThing {
 /**
  * 
  */
-export function stubPhysics(eightBitter: EightBittr = stubEightBittr()): Physics {
+export function stubPhysics(eightBitter: EightBittr = stubEightBittr()): Physics<StubEightBittr> {
     return eightBitter.physics;
 }
 
 /**
  * 
  */
-export function stubUtilities(eightBitter: EightBittr = stubEightBittr()): Utilities {
+export function stubUtilities(eightBitter: EightBittr = stubEightBittr()): Utilities<StubEightBittr> {
     return eightBitter.utilities;
 }

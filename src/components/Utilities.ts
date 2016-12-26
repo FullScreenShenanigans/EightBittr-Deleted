@@ -1,7 +1,10 @@
+import { Component } from "../Component";
+import { EightBittr } from "../EightBittr";
+
 /**
  * Miscellaneous utilities used by EightBittr instances.
  */
-export class Utilities {
+export class Utilities<TGameStartr extends EightBittr> extends Component<TGameStartr> {
     /**
      * "Proliferates" all properties of a donor onto a recipient by copying each
      * of them and recursing onto child Objects. This is a deep copy.
@@ -88,7 +91,7 @@ export class Utilities {
      *                     be skipped (defaults to false).
      * @returns recipient
      */
-    public proliferateElement(recipient: HTMLElement, donor: any, noOverride: boolean = false): HTMLElement {
+    public proliferateElement(recipient: HTMLElement, donor: any, noOverride?: boolean): HTMLElement {
         // For each attribute of the donor:
         for (let i in donor) {
             if (!donor.hasOwnProperty(i)) {
