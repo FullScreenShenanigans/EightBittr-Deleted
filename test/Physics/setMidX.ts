@@ -12,7 +12,7 @@ mochaLoader.it("shifts left", (): void => {
     EightBitter.physics.setMidX(thing, newMidX);
 
     // Assert
-    chai.expect(thing.left).to.be.equal(newMidX - width * EightBitter.unitsize / 2);
+    chai.expect(thing.left).to.be.equal(newMidX - width / 2);
 });
 
 mochaLoader.it("shifts right", (): void => {
@@ -26,5 +26,5 @@ mochaLoader.it("shifts right", (): void => {
     EightBitter.physics.setMidX(thing, newMidX);
 
     // Assert
-    chai.expect(thing.right).to.be.equal(newMidX + width * EightBitter.unitsize / 2);
+    chai.expect(thing.right).to.be.equal(newMidX + width / 2);
 });

@@ -1,11 +1,12 @@
+import { Utilities } from "../../src/components/Utilities";
 import { mochaLoader } from "../main";
 import { stubUtilities } from "../utils/fakes";
 
 mochaLoader.it("follows an empty path nowhere", (): void => {
     // Arrange
-    const utilities = stubUtilities();
-    const path = [];
-    const object = {};
+    const utilities: Utilities<any> = stubUtilities();
+    const path: string[] = [];
+    const object: any = {};
 
     // Act
     const result = utilities.followPathHard(object, path);
@@ -16,9 +17,9 @@ mochaLoader.it("follows an empty path nowhere", (): void => {
 
 mochaLoader.it("follows a path of size 1", (): void => {
     // Arrange
-    const utilities = stubUtilities();
-    const path = ["foo"];
-    const object = {
+    const utilities: Utilities<any> = stubUtilities();
+    const path: string[] = ["foo"];
+    const object: any = {
         foo: {}
     };
 
@@ -31,9 +32,9 @@ mochaLoader.it("follows a path of size 1", (): void => {
 
 mochaLoader.it("follows a path of size 2", (): void => {
     // Arrange
-    const utilities = stubUtilities();
-    const path = ["foo", "bar"];
-    const object = {
+    const utilities: Utilities<any> = stubUtilities();
+    const path: string[] = ["foo", "bar"];
+    const object: any = {
         foo: {
             bar: {}
         }
@@ -48,9 +49,9 @@ mochaLoader.it("follows a path of size 2", (): void => {
 
 mochaLoader.it("follows a path of size 3", (): void => {
     // Arrange
-    const utilities = stubUtilities();
-    const path = ["foo", "bar", "baz"];
-    const object = {
+    const utilities: Utilities<any> = stubUtilities();
+    const path: string[] = ["foo", "bar", "baz"];
+    const object: any = {
         foo: {
             bar: {
                 baz: {}
@@ -67,9 +68,9 @@ mochaLoader.it("follows a path of size 3", (): void => {
 
 mochaLoader.it("respects a starting 0 index", (): void => {
     // Arrange
-    const utilities = stubUtilities();
-    const path = ["foo", "bar", "baz"];
-    const object = {
+    const utilities: Utilities<any> = stubUtilities();
+    const path: string[] = ["foo", "bar", "baz"];
+    const object: any = {
         foo: {
             bar: {
                 baz: {}
@@ -86,9 +87,9 @@ mochaLoader.it("respects a starting 0 index", (): void => {
 
 mochaLoader.it("respects a starting non-zero index", (): void => {
     // Arrange
-    const utilities = stubUtilities();
-    const path = ["foo", "bar", "baz"];
-    const object = {
+    const utilities: Utilities<any> = stubUtilities();
+    const path: string[] = ["foo", "bar", "baz"];
+    const object: any = {
         bar: {
             baz: {}
         }
@@ -103,9 +104,9 @@ mochaLoader.it("respects a starting non-zero index", (): void => {
 
 mochaLoader.it("returns undefined when part of the path does not exist", (): void => {
     // Arrange
-    const utilities = stubUtilities();
-    const path = ["foo"];
-    const object = {};
+    const utilities: Utilities<any> = stubUtilities();
+    const path: string[] = ["foo"];
+    const object: any = {};
 
     // Act
     const result = utilities.followPathHard(object, path);

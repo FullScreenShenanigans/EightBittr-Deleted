@@ -21,7 +21,7 @@ mochaLoader.it("adjusts right", (): void => {
     const thing = stubThing();
     const left = thing.left;
     const newLeft = left + 3.5;
-    const newRight = newLeft + thing.width * EightBitter.unitsize;
+    const newRight = newLeft + thing.width;
 
     // Act
     EightBitter.physics.setLeft(thing, newLeft);

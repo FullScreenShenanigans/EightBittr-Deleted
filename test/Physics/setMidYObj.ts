@@ -15,7 +15,7 @@ mochaLoader.it("shifts top", (): void => {
     EightBitter.physics.setMidYObj(thing, positioner);
 
     // Assert
-    chai.expect(thing.top).to.be.equal(newMidY - height * EightBitter.unitsize / 2);
+    chai.expect(thing.top).to.be.equal(newMidY - height / 2);
 });
 
 mochaLoader.it("shifts bottom", (): void => {
@@ -32,5 +32,5 @@ mochaLoader.it("shifts bottom", (): void => {
     EightBitter.physics.setMidYObj(thing, positioner);
 
     // Assert
-    chai.expect(thing.bottom).to.be.equal(newMidY + height * EightBitter.unitsize / 2);
+    chai.expect(thing.bottom).to.be.equal(newMidY + height / 2);
 });

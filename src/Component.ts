@@ -1,20 +1,20 @@
 import { EightBittr } from "./EightBittr";
 
 /**
- * A section of EightBittr functionality.
+ * A GameStartr component with full access to game state.
  */
-export abstract class Component<TEightBittr extends EightBittr> {
+export abstract class Component<TGameStartr extends EightBittr> {
     /**
-     * A container EightBitter to work within.
+     * GameStartr instance this is used for.
      */
-    protected EightBitter: TEightBittr;
+    protected readonly gameStarter: TGameStartr;
 
     /**
-     * Initializes a new instance of the EightBittr class.
+     * Initializes a new instance of the Component class.
      * 
-     * @param EightBitter   A container EightBitter to work within.
+     * @param gameStarter   GameStartr instance this is used for.
      */
-    public constructor(EightBitter: TEightBittr) {
-        this.EightBitter = EightBitter;
+    public constructor(gameStarter: TGameStartr) {
+        this.gameStarter = gameStarter;
     }
 }

@@ -1,26 +1,25 @@
+import { Physics } from "../../src/components/Physics";
+import { Utilities } from "../../src/components/Utilities";
 import { EightBittr } from "../../src/EightBittr";
 import { IThing } from "../../src/IThing";
-import { Physics } from "../../src/Physics";
-import { Utilities } from "../../src/Utilities";
 
 /**
- * Mock implementation of EightBittr.
+ * 
  */
-export class MockEightBittr extends EightBittr {
+export class StubEightBittr extends EightBittr {
     /**
-     * Sets the system components.
+     * 
      */
-    public resetComponents(): void {
-        this.physics = new Physics(this);
-        this.utilities = new Utilities(this);
+    protected resetModules(): void {
+        // ...
     }
 }
 
 /**
  * 
  */
-export function stubEightBittr(unitsize: number = 2): EightBittr {
-    return new MockEightBittr(unitsize);
+export function stubEightBittr(unitsize: number = 2): StubEightBittr {
+    return new StubEightBittr(unitsize);
 }
 
 /**
@@ -42,13 +41,13 @@ export function stubThing(): IThing {
 /**
  * 
  */
-export function stubPhysics(EightBitter: EightBittr = stubEightBittr()): Physics<EightBittr> {
-    return EightBitter.physics;
+export function stubPhysics(eightBitter: StubEightBittr = stubEightBittr()): Physics<EightBittr> {
+    return eightBitter.physics;
 }
 
 /**
  * 
  */
-export function stubUtilities(EightBitter: EightBittr = stubEightBittr()): Utilities<EightBittr> {
-    return EightBitter.utilities;
+export function stubUtilities(eightBitter: StubEightBittr = stubEightBittr()): Utilities<EightBittr> {
+    return eightBitter.utilities;
 }
