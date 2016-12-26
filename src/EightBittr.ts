@@ -82,6 +82,17 @@ export abstract class EightBittr {
     }
 
     /**
+     * Resets the system.
+     * 
+     * @param settings   Settings to reset an instance of the EightBittr class.
+     */
+    public reset(settings: IProcessedSizeSettings = this.settings): void {
+        this.resetComponents();
+        this.resetElements(settings);
+        this.resetModules(settings);
+    }
+
+    /**
      * Processes raw instantiation settings for sizing.
      * 
      * @param settings   Raw instantiation settings.
@@ -108,17 +119,6 @@ export abstract class EightBittr {
         }
 
         return stretched;
-    }
-
-    /**
-     * Resets the system.
-     * 
-     * @param settings   Settings to reset an instance of the EightBittr class.
-     */
-    protected reset(settings: IProcessedSizeSettings = this.settings): void {
-        this.resetComponents();
-        this.resetElements(settings);
-        this.resetModules(settings);
     }
 
     /**
