@@ -100,9 +100,9 @@ export abstract class EightBittr {
      */
     protected processSettings(rawSettings: ISizeSettings = {}): IProcessedSizeSettings {
         return {
+            ...rawSettings,
             height: this.processSizeSetting(rawSettings.height, innerHeight - 117),
-            width: this.processSizeSetting(rawSettings.width, innerWidth),
-            ...rawSettings
+            width: this.processSizeSetting(rawSettings.width, innerWidth)
         };
     }
 
