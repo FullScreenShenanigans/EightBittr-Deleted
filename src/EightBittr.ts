@@ -1,3 +1,4 @@
+import { Component } from "./Component";
 import { Physics } from "./components/Physics";
 import { Utilities } from "./components/Utilities";
 
@@ -139,6 +140,27 @@ export abstract class EightBittr {
         this.canvas = this.createCanvas(settings);
 
         this.container.appendChild(this.canvas);
+    }
+
+    /**
+     * Registers a lazily instantiated component.
+     * 
+     * @type TComponent   Type of the component.
+     * @type TKey   Key of the component under this.
+     * @param key   Key of the component under this.
+     * @param initializer   Initializes the component when required.
+     */
+    protected registerLazyComponent<TComponent extends Component<this>, TKey extends keyof this>(
+        key: TKey, initializer: () => TComponent): void {
+        let component: TComponent;
+
+        Object.defineProperty(this, key, {
+            configurable: true,
+            get: (): void => {
+                component = initializer.call(this);
+                Object.defineProperty(this, key, (): TComponent => component);
+            }
+        });
     }
 
     /**
