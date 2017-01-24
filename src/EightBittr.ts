@@ -1,4 +1,3 @@
-import { Component } from "./Component";
 import { Physics } from "./components/Physics";
 import { Utilities } from "./components/Utilities";
 
@@ -143,22 +142,24 @@ export abstract class EightBittr {
     }
 
     /**
-     * Registers a lazily instantiated component.
+     * Registers a lazily instantiated component or module.
      * 
-     * @type TComponent   Type of the component.
-     * @type TKey   Key of the component under this.
-     * @param key   Key of the component under this.
-     * @param initializer   Initializes the component when required.
+     * @type TValue   Type of the component or module.
+     * @type TKey   Key of the component or module under this.
+     * @param key   Key of the component or module under this.
+     * @param generator   Initializes the component or module when required.
      */
-    protected registerLazyComponent<TComponent extends Component<this>, TKey extends keyof this>(
-        key: TKey, initializer: () => TComponent): void {
-        let component: TComponent;
+    protected registerLazy<TValue, TKey extends keyof this>(key: TKey, generator: () => TValue): void {
+        const gameStarter: this = this;
+        let value: TValue;
 
-        Object.defineProperty(this, key, {
-            configurable: true,
-            get: (): void => {
-                component = initializer.call(this);
-                Object.defineProperty(this, key, (): TComponent => component);
+        Object.defineProperty(gameStarter, key, {
+            get: (): TValue => {
+                if (!value) {
+                    value = generator.call(this);
+                }
+
+                return value;
             }
         });
     }
