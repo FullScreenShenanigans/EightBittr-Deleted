@@ -77,19 +77,20 @@ export abstract class EightBittr {
      * @param rawSettings   Settings to initialize a new instance of the EightBittr class.
      */
     public constructor(rawSettings?: ISizeSettings) {
-        this.settings = this.processSettings(rawSettings);
-        this.reset(this.settings);
+        this.reset(this.processSettings(rawSettings));
     }
 
     /**
      * Resets the system.
      * 
-     * @param settings   Settings to reset an instance of the EightBittr class.
+     * @param settings   Settings to reset with, if not the previous ones.
      */
     public reset(settings: IProcessedSizeSettings = this.settings): void {
         this.resetComponents();
         this.resetElements(settings);
         this.resetModules(settings);
+
+        this.settings = settings;
     }
 
     /**
@@ -132,7 +133,7 @@ export abstract class EightBittr {
     /**
      * Resets the system elements.
      * 
-     * @param settings   Settings to reset an instance of the EightBittr class.
+     * @param settings   Initialization settings with filled out, finite sizes.
      */
     protected resetElements(settings: IProcessedSizeSettings): void {
         this.container = this.createContainer(settings);
@@ -165,7 +166,7 @@ export abstract class EightBittr {
     }
 
     /**
-     * @param settings   Settings to reset an instance of the EightBittr class.
+     * @param settings   Initialization settings with filled out, finite sizes.
      * @returns A new HTML container containing all game elements.
      */
     protected createContainer(settings: IProcessedSizeSettings): HTMLDivElement {
@@ -180,7 +181,7 @@ export abstract class EightBittr {
     }
 
     /**
-     * @param settings   Settings to reset an instance of the EightBittr class.
+     * @param settings   Initialization settings with filled out, finite sizes.
      * @returns A new canvas upon which the game's screen is constantly drawn.
      */
     protected createCanvas(settings: IProcessedSizeSettings): HTMLCanvasElement {
@@ -190,7 +191,7 @@ export abstract class EightBittr {
     /**
      * Resets the system modules.
      * 
-     * @param settings   Settings to reset an instance of the EightBittr class.
+     * @param settings   Initialization settings with filled out, finite sizes.
      */
     protected abstract resetModules(settings: IProcessedSizeSettings): void;
 }
