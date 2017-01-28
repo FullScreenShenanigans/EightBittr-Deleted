@@ -77,19 +77,20 @@ export abstract class EightBittr {
      * @param rawSettings   Settings to initialize a new instance of the EightBittr class.
      */
     public constructor(rawSettings?: ISizeSettings) {
-        this.settings = this.processSettings(rawSettings);
-        this.reset(this.settings);
+        this.reset(this.processSettings(rawSettings));
     }
 
     /**
      * Resets the system.
      * 
-     * @param settings   Settings to reset an instance of the EightBittr class.
+     * @param settings   Settings to reset with, if not the previous ones.
      */
     public reset(settings: IProcessedSizeSettings = this.settings): void {
         this.resetComponents();
         this.resetElements(settings);
         this.resetModules(settings);
+
+        this.settings = settings;
     }
 
     /**
@@ -132,7 +133,7 @@ export abstract class EightBittr {
     /**
      * Resets the system elements.
      * 
-     * @param settings   Settings to reset an instance of the EightBittr class.
+     * @param settings   Initialization settings with filled out, finite sizes.
      */
     protected resetElements(settings: IProcessedSizeSettings): void {
         this.container = this.createContainer(settings);
@@ -142,7 +143,30 @@ export abstract class EightBittr {
     }
 
     /**
-     * @param settings   Settings to reset an instance of the EightBittr class.
+     * Registers a lazily instantiated component or module.
+     * 
+     * @type TValue   Type of the component or module.
+     * @type TKey   Key of the component or module under this.
+     * @param key   Key of the component or module under this.
+     * @param generator   Initializes the component or module when required.
+     */
+    protected registerLazy<TValue, TKey extends keyof this>(key: TKey, generator: () => TValue): void {
+        const gameStarter: this = this;
+        let value: TValue;
+
+        Object.defineProperty(gameStarter, key, {
+            get: (): TValue => {
+                if (!value) {
+                    value = generator.call(this);
+                }
+
+                return value;
+            }
+        });
+    }
+
+    /**
+     * @param settings   Initialization settings with filled out, finite sizes.
      * @returns A new HTML container containing all game elements.
      */
     protected createContainer(settings: IProcessedSizeSettings): HTMLDivElement {
@@ -157,7 +181,7 @@ export abstract class EightBittr {
     }
 
     /**
-     * @param settings   Settings to reset an instance of the EightBittr class.
+     * @param settings   Initialization settings with filled out, finite sizes.
      * @returns A new canvas upon which the game's screen is constantly drawn.
      */
     protected createCanvas(settings: IProcessedSizeSettings): HTMLCanvasElement {
@@ -167,7 +191,7 @@ export abstract class EightBittr {
     /**
      * Resets the system modules.
      * 
-     * @param settings   Settings to reset an instance of the EightBittr class.
+     * @param settings   Initialization settings with filled out, finite sizes.
      */
     protected abstract resetModules(settings: IProcessedSizeSettings): void;
 }
