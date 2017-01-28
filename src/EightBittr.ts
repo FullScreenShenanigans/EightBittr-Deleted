@@ -155,6 +155,7 @@ export abstract class EightBittr {
         let value: TValue;
 
         Object.defineProperty(gameStarter, key, {
+            configurable: true,
             get: (): TValue => {
                 if (!value) {
                     value = generator.call(this);
