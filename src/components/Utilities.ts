@@ -17,7 +17,7 @@ export class Utilities<TGameStartr extends EightBittr> extends Component<TGameSt
      */
     public proliferate(recipient: any, donor: any, noOverride?: boolean): any {
         // For each attribute of the donor:
-        for (let i in donor) {
+        for (const i in donor) {
             if (!donor.hasOwnProperty(i)) {
                 continue;
             }
@@ -55,7 +55,7 @@ export class Utilities<TGameStartr extends EightBittr> extends Component<TGameSt
      */
     public proliferateHard(recipient: any, donor: any, noOverride?: boolean): any {
         // For each attribute of the donor:
-        for (let i in donor) {
+        for (const i in donor) {
             if (!donor.hasOwnProperty(i)) {
                 continue;
             }
@@ -93,7 +93,7 @@ export class Utilities<TGameStartr extends EightBittr> extends Component<TGameSt
      */
     public proliferateElement(recipient: HTMLElement, donor: any, noOverride?: boolean): HTMLElement {
         // For each attribute of the donor:
-        for (let i in donor) {
+        for (const i in donor) {
             if (!donor.hasOwnProperty(i)) {
                 continue;
             }
@@ -111,8 +111,8 @@ export class Utilities<TGameStartr extends EightBittr> extends Component<TGameSt
                 case "children":
                 case "options":
                     if (typeof setting !== "undefined") {
-                        for (let j: number = 0; j < setting.length; j += 1) {
-                            recipient.appendChild(setting[j]);
+                        for (const child of (setting as HTMLElement[])) {
+                            recipient.appendChild(child);
                         }
                     }
                     break;
@@ -160,8 +160,8 @@ export class Utilities<TGameStartr extends EightBittr> extends Component<TGameSt
         const element: HTMLElement = document.createElement(tag || "div");
 
         // For each provided object, add those settings to the element
-        for (let i: number = 0; i < args.length; i += 1) {
-            this.proliferateElement(element, args[i]);
+        for (const arg of args) {
+            this.proliferateElement(element, arg);
         }
 
         return element;
