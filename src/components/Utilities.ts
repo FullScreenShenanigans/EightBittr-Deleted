@@ -8,11 +8,10 @@ export class Utilities<TGameStartr extends EightBittr> extends Component<TGameSt
     /**
      * "Proliferates" all properties of a donor onto a recipient by copying each
      * of them and recursing onto child Objects. This is a deep copy.
-     * 
+     *
      * @param recipient   An object to receive properties from the donor.
      * @param donor   An object do donoate properties to the recipient.
-     * @param noOverride   Whether pre-existing properties of the recipient should 
-     *                     be skipped (defaults to false).
+     * @param noOverride   Whether pre-existing properties of the recipient should     *                     be skipped (defaults to false).
      * @returns recipient
      */
     public proliferate(recipient: any, donor: any, noOverride?: boolean): any {
@@ -46,11 +45,11 @@ export class Utilities<TGameStartr extends EightBittr> extends Component<TGameSt
     /**
      * Identical to proliferate, but instead of checking whether the recipient
      * hasOwnProperty on properties, it just checks if they're truthy.
-     * 
-     * @param recipient   An object to receive properties from the donor.
+     *
+    * @param recipient   An object to receive properties from the donor.
      * @param donor   An object do donoate properties to the recipient.
-     * @param noOverride   Whether pre-existing properties of the recipient should 
-     *                     be skipped (defaults to false).
+     * @param noOverride   Whether pre-existing properties of the recipient should
+    *                     be skipped (defaults to false).
      * @returns recipient
      */
     public proliferateHard(recipient: any, donor: any, noOverride?: boolean): any {
@@ -82,13 +81,13 @@ export class Utilities<TGameStartr extends EightBittr> extends Component<TGameSt
 
     /**
      * Identical to proliferate, but tailored for HTML elements because many
-     * element attributes don't play nicely with JavaScript Array standards. 
-     * Looking at you, HTMLCollection!
-     * 
-     * @param recipient   An HTMLElement to receive properties from the donor.
+     * element attributes don't play nicely with JavaScript Array standards.
+    * Looking at you, HTMLCollection!
+     *
+    * @param recipient   An HTMLElement to receive properties from the donor.
      * @param donor   An object do donoate properties to the recipient.
-     * @param noOverride   Whether pre-existing properties of the recipient should 
-     *                     be skipped (defaults to false).
+     * @param noOverride   Whether pre-existing properties of the recipient should
+    *                     be skipped (defaults to false).
      * @returns recipient
      */
     public proliferateElement(recipient: HTMLElement, donor: any, noOverride?: boolean): HTMLElement {
@@ -151,8 +150,8 @@ export class Utilities<TGameStartr extends EightBittr> extends Component<TGameSt
      * Creates and returns an HTMLElement of the specified type. Any additional
      * settings Objects may be given to be proliferated onto the Element via
      * proliferateElement.
-     * 
-     * @param type   The tag of the Element to be created.
+     *
+      @param type   The tag of the Element to be created.
      * @param settings   Additional settings to proliferated onto the Element.
      * @returns {HTMLElement}
      */
@@ -169,8 +168,8 @@ export class Utilities<TGameStartr extends EightBittr> extends Component<TGameSt
 
     /**
      * Creates and returns a new HTML <canvas> element with no image smoothing.
-     * 
-     * @param width   How wide the canvas should be.
+     *
+     *@param width   How wide the canvas should be.
      * @param height   How tall the canvas should be.
      * @returns A canvas of the given width and height height.
      */
@@ -199,8 +198,8 @@ export class Utilities<TGameStartr extends EightBittr> extends Component<TGameSt
 
     /**
      * Follows a path inside an Object recursively, based on a given path.
-     * 
-     * @param object   A container to follow a path inside.
+     *
+     * param object   A container to follow a path inside.
      * @param path   The ordered names of attributes to descend into.
      * @param num   The starting index in path (by default, 0).
      * @returns The discovered property within object, or undefined if the
@@ -220,8 +219,8 @@ export class Utilities<TGameStartr extends EightBittr> extends Component<TGameSt
 
     /**
      * Switches an object from one Array to another using splice and push.
-     * 
-     * @param object    The object to move between Arrays.
+     *
+     * @aram object    The object to move between Arrays.
      * @param arrayOld   The Array to take the object out of.
      * @param arrayNew   The Array to move the object into.
      */
@@ -233,8 +232,8 @@ export class Utilities<TGameStartr extends EightBittr> extends Component<TGameSt
     /**
      * Sets a Thing's position within an Array to the front by splicing and then
      * unshifting it.
-     * 
-     * @param object   The object to move within the Array.
+     *
+     * @pram object   The object to move within the Array.
      * @param array   An Array currently containing the object.
      */
     public arrayToBeginning(object: any, array: any[]): void {
@@ -245,8 +244,8 @@ export class Utilities<TGameStartr extends EightBittr> extends Component<TGameSt
     /**
      * Sets a Thing's position within an Array to the front by splicing and then
      * pushing it.
-     * 
-     * @param object   The object to move within the Array.
+     *
+     * @paam object   The object to move within the Array.
      * @param array   An Array currently containing the object.
      */
     public arrayToEnd(object: any, array: any[]): void {
@@ -255,10 +254,10 @@ export class Utilities<TGameStartr extends EightBittr> extends Component<TGameSt
     }
 
     /**
-     * Sets a Thing's position within an Array to a specific index by splicing 
-     * it out, then back in.
-     * 
-     * @param object   The object to move within the Array.
+     * Sets a Thing's position within an Array to a specific index by splicing
+     * it ot, then back in.
+     *
+     * @para object   The object to move within the Array.
      * @param array   An Array currently containing the object.
      * @param index   Where the object should be moved to in the Array.
      */

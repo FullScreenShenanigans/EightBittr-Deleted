@@ -24,4 +24,4 @@ mochaLoader.it("creates a sized canvas", (): void => {
     // Assert
     chai.expect(canvas.width).to.be.equal(width);
     chai.expect(canvas.height).to.be.equal(height);
-})
+});

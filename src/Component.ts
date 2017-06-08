@@ -11,7 +11,7 @@ export abstract class Component<TGameStartr extends EightBittr> {
 
     /**
      * Initializes a new instance of the Component class.
-     * 
+     *
      * @param source   GameStartr instance to wrap around, or one of its components.
      */
     public constructor(source: TGameStartr | Component<TGameStartr>) {

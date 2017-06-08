@@ -57,7 +57,7 @@ mochaLoader.it("adds styles", (): void => {
         style: {
             color: "blue"
         }
-    }
+    };
 
     // Act
     utilities.proliferateElement(recipient, donor);
@@ -75,7 +75,7 @@ mochaLoader.it("appends children", (): void => {
             document.createElement("span"),
             document.createElement("span")
         ]
-    }
+    };
 
     // Act
     utilities.proliferateElement(recipient, donor);
@@ -94,7 +94,7 @@ mochaLoader.it("appends options", (): void => {
             document.createElement("option"),
             document.createElement("option")
         ]
-    }
+    };
 
     // Act
     utilities.proliferateElement(recipient, donor);

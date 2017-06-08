@@ -4,11 +4,11 @@ import { EightBittr } from "../../src/EightBittr";
 import { IThing } from "../../src/IThing";
 
 /**
- * 
+ *
  */
 export class StubEightBittr extends EightBittr {
     /**
-     * 
+     *
      */
     protected resetModules(): void {
         // ...
@@ -16,14 +16,14 @@ export class StubEightBittr extends EightBittr {
 }
 
 /**
- * 
+ *
  */
 export function stubEightBittr(unitsize: number = 2): StubEightBittr {
     return new StubEightBittr(unitsize);
 }
 
 /**
- * 
+ *
  */
 export function stubThing(): IThing {
     return {
@@ -39,14 +39,14 @@ export function stubThing(): IThing {
 }
 
 /**
- * 
+ *
  */
 export function stubPhysics(eightBitter: StubEightBittr = stubEightBittr()): Physics<EightBittr> {
     return eightBitter.physics;
 }
 
 /**
- * 
+ *
  */
 export function stubUtilities(eightBitter: StubEightBittr = stubEightBittr()): Utilities<EightBittr> {
     return eightBitter.utilities;

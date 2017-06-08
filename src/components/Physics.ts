@@ -8,7 +8,7 @@ import { IThing } from "../IThing";
 export class Physics<TGameStartr extends EightBittr> extends Component<TGameStartr> {
     /**
      * Shifts a Thing vertically by changing its top and bottom attributes.
-     * 
+     *
      * @param thing   The Thing to shift vertically.
      * @param dy   How far to shift the Thing.
      */
@@ -19,7 +19,7 @@ export class Physics<TGameStartr extends EightBittr> extends Component<TGameStar
 
     /**
      * Shifts a Thing horizontally by changing its top and bottom attributes.
-     * 
+     *
      * @param thing   The Thing to shift horizontally.
      * @param dy   How far to shift the Thing.
      */
@@ -31,7 +31,7 @@ export class Physics<TGameStartr extends EightBittr> extends Component<TGameStar
     /**
      * Sets the top of a Thing to a set number, changing the bottom based on its
      * height and the EightBittr's unisize.
-     * 
+     *
      * @param thing   The Thing to shift vertically.
      * @param top   Where the Thing's top should be.
      */
@@ -43,7 +43,7 @@ export class Physics<TGameStartr extends EightBittr> extends Component<TGameStar
     /**
      * Sets the right of a Thing to a set number, changing the left based on its
      * width and the EightBittr's unisize.
-     * 
+     *
      * @param thing   The Thing to shift horizontally.
      * @param top   Where the Thing's right should be.
      */
@@ -55,7 +55,7 @@ export class Physics<TGameStartr extends EightBittr> extends Component<TGameStar
     /**
      * Sets the bottom of a Thing to a set number, changing the top based on its
      * height and the EightBittr's unisize.
-     * 
+     *
      * @param thing   The Thing to shift vertically.
      * @param top   Where the Thing's bottom should be.
      */
@@ -67,7 +67,7 @@ export class Physics<TGameStartr extends EightBittr> extends Component<TGameStar
     /**
      * Sets the left of a Thing to a set number, changing the right based on its
      * width and the EightBittr's unisize.
-     * 
+     *
      * @param thing   The Thing to shift horizontally.
      * @param top   Where the Thing's left should be.
      */
@@ -78,7 +78,7 @@ export class Physics<TGameStartr extends EightBittr> extends Component<TGameStar
 
     /**
      * Shifts a Thing so that it is horizontally centered on the given x.
-     * 
+     *
      * @param thing   The Thing to shift horizontally.
      * @param x   Where the Thing's horizontal midpoint should be.
      */
@@ -88,7 +88,7 @@ export class Physics<TGameStartr extends EightBittr> extends Component<TGameStar
 
     /**
      * Shifts a Thing so that it is vertically centered on the given y.
-     * 
+     *
      * @param thing   The Thing to shift vertically.
      * @param y   Where the Thing's vertical midpoint should be.
      */
@@ -98,7 +98,7 @@ export class Physics<TGameStartr extends EightBittr> extends Component<TGameStar
 
     /**
      * Shifts a Thing so that it is centered on the given x and y.
-     * 
+     *
      * @param thing   The Thing to shift vertically and horizontally.
      * @param x   Where the Thing's horizontal midpoint should be.
      * @param y   Where the Thing's vertical midpoint should be.
@@ -127,7 +127,7 @@ export class Physics<TGameStartr extends EightBittr> extends Component<TGameStar
     /**
      * Shifts a Thing so that its midpoint is centered on the midpoint of the
      * other Thing.
-     * 
+     *
      * @param thing   The Thing to be shifted.
      * @param other   The Thing whose midpoint is referenced.
      */
@@ -137,9 +137,9 @@ export class Physics<TGameStartr extends EightBittr> extends Component<TGameStar
     }
 
     /**
-     * Shifts a Thing so that its horizontal midpoint is centered on the 
+     * Shifts a Thing so that its horizontal midpoint is centered on the
      * midpoint of the other Thing.
-     * 
+     *
      * @param thing   The Thing to be shifted horizontally.
      * @param other   The Thing whose horizontal midpoint is referenced.
      */
@@ -148,9 +148,9 @@ export class Physics<TGameStartr extends EightBittr> extends Component<TGameStar
     }
 
     /**
-     * Shifts a Thing so that its vertical midpoint is centered on the 
+     * Shifts a Thing so that its vertical midpoint is centered on the
      * midpoint of the other Thing.
-     * 
+     *
      * @param thing   The Thing to be shifted vertically.
      * @param other   The Thing whose vertical midpoint is referenced.
      */
@@ -181,7 +181,7 @@ export class Physics<TGameStartr extends EightBittr> extends Component<TGameStar
     /**
      * Shifts a Thing's top up, then sets the bottom (similar to a shiftVert and
      * a setTop combined).
-     * 
+     *
      * @param thing   The Thing to be shifted vertically.
      * @param dy   How far to shift the Thing vertically (by default, 0).
      */
@@ -193,7 +193,7 @@ export class Physics<TGameStartr extends EightBittr> extends Component<TGameStar
     /**
      * Shifts a Thing's right, then sets the left (similar to a shiftHoriz and a
      * setRight combined).
-     * 
+     *
      * @param thing   The Thing to be shifted horizontally.
      * @param dx   How far to shift the Thing horizontally (by default, 0).
      */
@@ -203,9 +203,9 @@ export class Physics<TGameStartr extends EightBittr> extends Component<TGameStar
     }
 
     /**
-     * Shifts a Thing's bottom down, then sets the bottom (similar to a 
+     * Shifts a Thing's bottom down, then sets the bottom (similar to a
      * shiftVert and a setBottom combined).
-     * 
+     *
      * @param thing   The Thing to be shifted vertically.
      * @param dy   How far to shift the Thing vertically (by default, 0).
      */
@@ -217,7 +217,7 @@ export class Physics<TGameStartr extends EightBittr> extends Component<TGameStar
     /**
      * Shifts a Thing's left, then sets the right (similar to a shiftHoriz and a
      * setLeft combined).
-     * 
+     *
      * @param thing   The Thing to be shifted horizontally.
      * @param dx   How far to shift the Thing horizontally (by default, 0).
      */
@@ -229,7 +229,7 @@ export class Physics<TGameStartr extends EightBittr> extends Component<TGameStar
     /**
      * Shifts a Thing toward a target x, but limits the total distance allowed.
      * Distance is computed as from the Thing's horizontal midpoint.
-     * 
+     *
      * @param thing   The Thing to be shifted horizontally.
      * @param dx   How far to shift the Thing horizontally.
      * @param maxDistance   The maximum distance the Thing can be shifted (by
@@ -248,7 +248,7 @@ export class Physics<TGameStartr extends EightBittr> extends Component<TGameStar
     /**
      * Shifts a Thing toward a target y, but limits the total distance allowed.
      * Distance is computed as from the Thing's vertical midpoint.
-     * 
+     *
      * @param thing   The Thing to be shifted vertically.
      * @param dy   How far to shift the Thing vertically.
      * @param maxDistance   The maximum distance the Thing can be shifted (by
