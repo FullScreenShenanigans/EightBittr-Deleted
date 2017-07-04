@@ -82,7 +82,8 @@ export abstract class EightBittr {
 
     /**
      * Resets the system.
-     *     * @param settings   Settings to reset with, if not the previous ones.
+     *
+     * @param settings   Settings to reset with, if not the previous ones.
      */
     public reset(settings: IProcessedSizeSettings = this.settings): void {
         this.resetComponents();
@@ -95,7 +96,7 @@ export abstract class EightBittr {
     /**
      * Processes raw instantiation settings for sizing.
      *
-    * @param settings   Raw instantiation settings.
+     * @param settings   Raw instantiation settings.
      * @returns Initialization settings with filled out, finite sizes.
      */
     protected processSettings(rawSettings: ISizeSettings = {}): IProcessedSizeSettings {
@@ -109,7 +110,7 @@ export abstract class EightBittr {
     /**
      * Processes a size number for instantiation settings.
      *
-    * @param size   A raw size measure for instantiation settings.
+     * @param size   A raw size measure for instantiation settings.
      * @param stretched   The default amount for the size.
      * @returns A processed size number for instantiation settings.
      */
@@ -132,7 +133,7 @@ export abstract class EightBittr {
     /**
      * Resets the system elements.
      *
-    * @param settings   Initialization settings with filled out, finite sizes.
+     * @param settings   Initialization settings with filled out, finite sizes.
      */
     protected resetElements(settings: IProcessedSizeSettings): void {
         this.container = this.createContainer(settings);
@@ -144,7 +145,7 @@ export abstract class EightBittr {
     /**
      * Registers a lazily instantiated component or module.
      *
-    * @type TValue   Type of the component or module.
+     * @type TValue   Type of the component or module.
      * @type TKey   Key of the component or module under this.
      * @param key   Key of the component or module under this.
      * @param generator   Initializes the component or module when required.
@@ -191,7 +192,7 @@ export abstract class EightBittr {
     /**
      * Resets the system modules.
      *
-    * @param settings   Initialization settings with filled out, finite sizes.
+     * @param settings   Initialization settings with filled out, finite sizes.
      */
     protected abstract resetModules(settings: IProcessedSizeSettings): void;
 }

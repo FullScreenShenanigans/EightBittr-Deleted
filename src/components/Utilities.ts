@@ -11,7 +11,8 @@ export class Utilities<TGameStartr extends EightBittr> extends Component<TGameSt
      *
      * @param recipient   An object to receive properties from the donor.
      * @param donor   An object do donoate properties to the recipient.
-     * @param noOverride   Whether pre-existing properties of the recipient should     *                     be skipped (defaults to false).
+     * @param noOverride   Whether pre-existing properties of the recipient should
+     *                     be skipped (defaults to false).
      * @returns recipient
      */
     public proliferate(recipient: any, donor: any, noOverride?: boolean): any {
@@ -46,10 +47,10 @@ export class Utilities<TGameStartr extends EightBittr> extends Component<TGameSt
      * Identical to proliferate, but instead of checking whether the recipient
      * hasOwnProperty on properties, it just checks if they're truthy.
      *
-    * @param recipient   An object to receive properties from the donor.
+     * @param recipient   An object to receive properties from the donor.
      * @param donor   An object do donoate properties to the recipient.
      * @param noOverride   Whether pre-existing properties of the recipient should
-    *                     be skipped (defaults to false).
+     *                     be skipped (defaults to false).
      * @returns recipient
      */
     public proliferateHard(recipient: any, donor: any, noOverride?: boolean): any {
@@ -82,12 +83,12 @@ export class Utilities<TGameStartr extends EightBittr> extends Component<TGameSt
     /**
      * Identical to proliferate, but tailored for HTML elements because many
      * element attributes don't play nicely with JavaScript Array standards.
-    * Looking at you, HTMLCollection!
+     * Looking at you, HTMLCollection!
      *
-    * @param recipient   An HTMLElement to receive properties from the donor.
+     * @param recipient   An HTMLElement to receive properties from the donor.
      * @param donor   An object do donoate properties to the recipient.
      * @param noOverride   Whether pre-existing properties of the recipient should
-    *                     be skipped (defaults to false).
+     *                     be skipped (defaults to false).
      * @returns recipient
      */
     public proliferateElement(recipient: HTMLElement, donor: any, noOverride?: boolean): HTMLElement {
@@ -151,7 +152,7 @@ export class Utilities<TGameStartr extends EightBittr> extends Component<TGameSt
      * settings Objects may be given to be proliferated onto the Element via
      * proliferateElement.
      *
-      @param type   The tag of the Element to be created.
+     * @param type   The tag of the Element to be created.
      * @param settings   Additional settings to proliferated onto the Element.
      * @returns {HTMLElement}
      */
@@ -169,7 +170,7 @@ export class Utilities<TGameStartr extends EightBittr> extends Component<TGameSt
     /**
      * Creates and returns a new HTML <canvas> element with no image smoothing.
      *
-     *@param width   How wide the canvas should be.
+     * @param width   How wide the canvas should be.
      * @param height   How tall the canvas should be.
      * @returns A canvas of the given width and height height.
      */
