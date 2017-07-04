@@ -149,17 +149,16 @@ export class Utilities<TGameStartr extends EightBittr> extends Component<TGameSt
 
     /**
      * Creates and returns an HTMLElement of the specified type. Any additional
-     * settings Objects may be given to be proliferated onto the Element via
-     * proliferateElement.
+     * settings Objects may be given to be proliferated via proliferateElement.
      *
-     * @param type   The tag of the Element to be created.
+     * @type TElement   Type of the element to be created.
+     * @param type   The tag of the element to be created.
      * @param settings   Additional settings to proliferated onto the Element.
-     * @returns {HTMLElement}
+     * @returns The created element.
      */
-    public createElement(tag?: string, ...args: any[]): HTMLElement {
-        const element: HTMLElement = document.createElement(tag || "div");
+    public createElement<TElement extends HTMLElement = HTMLElement>(tag?: string, ...args: any[]): TElement {
+        const element: TElement = document.createElement(tag || "div") as TElement;
 
-        // For each provided object, add those settings to the element
         for (const arg of args) {
             this.proliferateElement(element, arg);
         }

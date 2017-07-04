@@ -143,6 +143,30 @@ export abstract class EightBittr {
     }
 
     /**
+     * Registers a Promise-delayed component or module.
+     *
+     * @type TValue   Type of the component or module.
+     * @type TKey   Key of the component or module under this.
+     * @param key   Key of the component or module under this.
+     * @param generator   Initializes A Promise for the component or module when required.
+     */
+    protected registerDelayed<TValue, TKey extends keyof this>(key: TKey, generator: () => Promise<TValue>): void {
+        const gameStarter: this = this;
+        let pendingValue: Promise<TValue>;
+
+        Object.defineProperty(gameStarter, key, {
+            configurable: true,
+            get: async (): Promise<TValue> => {
+                if (!pendingValue) {
+                    pendingValue = generator.call(this);
+                }
+
+                return pendingValue;
+            }
+        });
+    }
+
+    /**
      * Registers a lazily instantiated component or module.
      *
      * @type TValue   Type of the component or module.
@@ -171,14 +195,14 @@ export abstract class EightBittr {
      * @returns A new HTML container containing all game elements.
      */
     protected createContainer(settings: IProcessedSizeSettings): HTMLDivElement {
-        return this.utilities.createElement("div", {
+        return this.utilities.createElement<HTMLDivElement>("div", {
             className: "EightBitter",
             style: {
                 position: "relative",
                 width: settings.width + "px",
                 height: settings.height + "px",
             }
-        }) as HTMLDivElement;
+        });
     }
 
     /**
