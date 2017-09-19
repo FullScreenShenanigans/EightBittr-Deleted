@@ -211,6 +211,7 @@ export class Utilities<TGameStartr extends EightBittr> extends Component<TGameSt
                 return undefined;
             }
 
+            // tslint:disable-next-line:no-parameter-reassignment
             object = object[path[i]];
         }
 
