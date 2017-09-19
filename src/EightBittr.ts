@@ -151,10 +151,9 @@ export abstract class EightBittr {
      * @param generator   Initializes A Promise for the component or module when required.
      */
     protected registerDelayed<TValue, TKey extends keyof this>(key: TKey, generator: () => Promise<TValue>): void {
-        const gameStarter: this = this;
         let pendingValue: Promise<TValue>;
 
-        Object.defineProperty(gameStarter, key, {
+        Object.defineProperty(this, key, {
             configurable: true,
             get: async (): Promise<TValue> => {
                 if (!pendingValue) {
@@ -175,10 +174,9 @@ export abstract class EightBittr {
      * @param generator   Initializes the component or module when required.
      */
     protected registerLazy<TValue, TKey extends keyof this>(key: TKey, generator: () => TValue): void {
-        const gameStarter: this = this;
         let value: TValue;
 
-        Object.defineProperty(gameStarter, key, {
+        Object.defineProperty(this, key, {
             configurable: true,
             get: (): TValue => {
                 if (!value) {
