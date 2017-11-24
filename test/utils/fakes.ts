@@ -18,8 +18,8 @@ export class StubEightBittr extends EightBittr {
 /**
  *
  */
-export function stubEightBittr(unitsize: number = 2): StubEightBittr {
-    return new StubEightBittr(unitsize);
+export function stubEightBittr(): StubEightBittr {
+    return new StubEightBittr();
 }
 
 /**

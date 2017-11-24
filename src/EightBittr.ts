@@ -71,16 +71,6 @@ export abstract class EightBittr {
     private settings: IProcessedSizeSettings;
 
     /**
-     * Initializes a new instance of the EightBittr class. Constants are copied
-     * onto the EightBittr from the designated source.
-     *
-     * @param rawSettings   Settings to initialize a new instance of the EightBittr class.
-     */
-    public constructor(rawSettings?: ISizeSettings) {
-        this.reset(this.processSettings(rawSettings));
-    }
-
-    /**
      * Resets the system.
      *
      * @param settings   Settings to reset with, if not the previous ones.
