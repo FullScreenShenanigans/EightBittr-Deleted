@@ -1,7 +1,7 @@
 {
   "name": "eightbittr",
   "description": "An abstract class used exclusively as the parent of GameStartr.",
-  "version": "0.6.6",
+  "version": "0.6.7",
   "author": {
     "name": "Josh Goldberg",
     "email": "joshuakgoldberg@outlook.com"
@@ -13,6 +13,7 @@
   "bugs": {
     "url": "https://github.com/FullScreenShenanigans/EightBittr/issues"
   },
+  "browser": "./lib/index.js",
   "license": "MIT",
   "types": "./lib/index.d.ts",
   "devDependencies": {
