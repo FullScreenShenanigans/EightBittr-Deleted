@@ -2,41 +2,16 @@ import { Physics } from "./components/Physics";
 import { Utilities } from "./components/Utilities";
 
 /**
- * Settings to initialize a new instance of the EightBittr class.
+ * Reset settings for an EightBittr.
  */
-export interface ISizeSettings {
+export interface IEightBittrSettings {
     /**
-     * A nickname for the size settings.
-     */
-    size?: string;
-
-    /**
-     * Whether the game should be expanded to full-screen size.
-     */
-    full?: boolean;
-
-    /**
-     * How wide the screen should be. Infinity is an option.
-     */
-    width?: number;
-
-    /**
-     * How tall the screen should be. Infinity is an option.
-     */
-    height?: number;
-}
-
-/**
- * Initialization settings with filled out, finite sizes.
- */
-export interface IProcessedSizeSettings extends ISizeSettings {
-    /**
-     * How wide the screen should be.
+     * How wide the game area should be.
      */
     width: number;
 
     /**
-     * How tall the screen should be.
+     * How tall the game area should be.
      */
     height: number;
 }
@@ -68,48 +43,19 @@ export abstract class EightBittr {
     /**
      * Initialization settings with filled out, finite sizes.
      */
-    private settings: IProcessedSizeSettings;
+    private settings: IEightBittrSettings;
 
     /**
      * Resets the system.
      *
      * @param settings   Settings to reset with, if not the previous ones.
      */
-    public reset(settings: IProcessedSizeSettings = this.settings): void {
+    public reset(settings: IEightBittrSettings = this.settings): void {
+        this.settings = settings;
+
         this.resetComponents();
         this.resetElements(settings);
         this.resetModules(settings);
-
-        this.settings = settings;
-    }
-
-    /**
-     * Processes raw instantiation settings for sizing.
-     *
-     * @param settings   Raw instantiation settings.
-     * @returns Initialization settings with filled out, finite sizes.
-     */
-    protected processSettings(rawSettings: ISizeSettings = {}): IProcessedSizeSettings {
-        return {
-            ...rawSettings,
-            height: this.processSizeSetting(rawSettings.height, innerHeight - 117),
-            width: this.processSizeSetting(rawSettings.width, innerWidth)
-        };
-    }
-
-    /**
-     * Processes a size number for instantiation settings.
-     *
-     * @param size   A raw size measure for instantiation settings.
-     * @param stretched   The default amount for the size.
-     * @returns A processed size number for instantiation settings.
-     */
-    protected processSizeSetting(size: number | undefined, stretched: number): number {
-        if (size && isFinite(size)) {
-            return size;
-        }
-
-        return stretched;
     }
 
     /**
@@ -123,9 +69,9 @@ export abstract class EightBittr {
     /**
      * Resets the system elements.
      *
-     * @param settings   Initialization settings with filled out, finite sizes.
+     * @param settings   Settings to reset with.
      */
-    protected resetElements(settings: IProcessedSizeSettings): void {
+    protected resetElements(settings: IEightBittrSettings): void {
         this.container = this.createContainer(settings);
         this.canvas = this.createCanvas(settings);
 
@@ -179,10 +125,10 @@ export abstract class EightBittr {
     }
 
     /**
-     * @param settings   Initialization settings with filled out, finite sizes.
+     * @param settings   Settings to reset with.
      * @returns A new HTML container containing all game elements.
      */
-    protected createContainer(settings: IProcessedSizeSettings): HTMLDivElement {
+    protected createContainer(settings: IEightBittrSettings): HTMLDivElement {
         return this.utilities.createElement<HTMLDivElement>("div", {
             className: "EightBitter",
             style: {
@@ -194,17 +140,17 @@ export abstract class EightBittr {
     }
 
     /**
-     * @param settings   Initialization settings with filled out, finite sizes.
+     * @param settings   Settings to reset with.
      * @returns A new canvas upon which the game's screen is constantly drawn.
      */
-    protected createCanvas(settings: IProcessedSizeSettings): HTMLCanvasElement {
+    protected createCanvas(settings: IEightBittrSettings): HTMLCanvasElement {
         return this.utilities.createCanvas(settings.width, settings.height);
     }
 
     /**
      * Resets the system modules.
      *
-     * @param settings   Initialization settings with filled out, finite sizes.
+     * @param settings   Settings to reset with.
      */
-    protected abstract resetModules(settings: IProcessedSizeSettings): void;
+    protected abstract resetModules(settings: IEightBittrSettings): void;
 }
