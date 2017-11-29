@@ -41,9 +41,9 @@ export abstract class EightBittr {
     public canvas: HTMLCanvasElement;
 
     /**
-     * Initialization settings with filled out, finite sizes.
+     * The most recent reset settings.
      */
-    private settings: IEightBittrSettings;
+    protected settings: IEightBittrSettings;
 
     /**
      * Resets the system.
@@ -52,6 +52,9 @@ export abstract class EightBittr {
      */
     public reset(settings: IEightBittrSettings = this.settings): void {
         this.settings = settings;
+        if (this.settings === undefined) {
+            throw new Error("Cannot reset without a settings object.");
+        }
 
         this.resetComponents();
         this.resetElements(settings);
