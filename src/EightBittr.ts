@@ -49,8 +49,9 @@ export abstract class EightBittr {
      * Resets the system.
      *
      * @param settings   Settings to reset with, if not the previous ones.
+     * @returns this
      */
-    public reset(settings: IEightBittrSettings = this.settings): void {
+    public reset(settings: IEightBittrSettings = this.settings): this {
         this.settings = settings;
         if (this.settings === undefined) {
             throw new Error("Cannot reset without a settings object.");
@@ -59,6 +60,8 @@ export abstract class EightBittr {
         this.resetComponents();
         this.resetElements(settings);
         this.resetModules(settings);
+
+        return this;
     }
 
     /**
@@ -100,7 +103,7 @@ export abstract class EightBittr {
                 }
 
                 return pendingValue;
-            }
+            },
         });
     }
 
@@ -123,7 +126,7 @@ export abstract class EightBittr {
                 }
 
                 return value;
-            }
+            },
         });
     }
 
@@ -136,9 +139,9 @@ export abstract class EightBittr {
             className: "EightBitter",
             style: {
                 position: "relative",
-                width: settings.width + "px",
-                height: settings.height + "px",
-            }
+                width: `${settings.width}px`,
+                height: `${settings.height}px`,
+            },
         });
     }
 
