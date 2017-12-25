@@ -1,5 +1,4 @@
 import { EightBittr } from "./EightBittr";
-import { IThing } from "./IThing";
 
 /**
  * Stub height for EightBittr tests.
@@ -32,17 +31,3 @@ export const stubEightBittr = (): StubEightBittr =>
             height: stubHeight,
             width: stubWidth,
         });
-
-/**
- *
- */
-export const stubThing = (): IThing => ({
-    width: 7,
-    height: 14,
-    top: 14,
-    right: 42,
-    bottom: 28,
-    left: 35,
-    xvel: 0,
-    yvel: 0,
-});

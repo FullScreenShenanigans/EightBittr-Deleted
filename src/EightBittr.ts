@@ -1,4 +1,3 @@
-import { Physics } from "./components/Physics";
 import { Utilities } from "./components/Utilities";
 
 /**
@@ -20,11 +19,6 @@ export interface IEightBittrSettings {
  * An base class used exclusively as the parent of GameStartr.
  */
 export abstract class EightBittr {
-    /**
-     * Physics functions used by this instance.
-     */
-    public physics: Physics<EightBittr>;
-
     /**
      * Utility functions used by this instance.
      */
@@ -68,7 +62,6 @@ export abstract class EightBittr {
      * Resets the system components.
      */
     protected resetComponents(): void {
-        this.physics = new Physics(this);
         this.utilities = new Utilities(this);
     }
 
