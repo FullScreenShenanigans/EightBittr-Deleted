@@ -140,6 +140,7 @@ export class Utilities<TGameStartr extends EightBittr> extends Component<TGameSt
                         // Regular primitives are easy to copy otherwise
                         (recipient as any)[i] = setting;
                     }
+                    break;
             }
         }
 
