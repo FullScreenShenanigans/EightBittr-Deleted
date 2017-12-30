@@ -7,8 +7,7 @@
     "bugs": {
         "url": "https://github.com/FullScreenShenanigans/EightBittr/issues"
     },
-    "dependencies": {
-    },
+    "dependencies": {},
     "description": "An abstract class used exclusively as the parent of GameStartr.",
     "devDependencies": {
         "@types/chai": "^4.0.4",
@@ -69,5 +68,5 @@
         "name": "EightBittr"
     },
     "types": "./src/index.d.ts",
-    "version": "0.7.2"
+    "version": "0.7.3"
 }
