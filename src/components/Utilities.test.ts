@@ -220,7 +220,6 @@ describe("Utilities", () => {
     });
 
     describe("followPathHard", () => {
-
         it("follows an empty path nowhere", (): void => {
             // Arrange
             const { utilities } = stubEightBittr();
