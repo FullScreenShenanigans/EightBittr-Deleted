@@ -40,6 +40,16 @@ export abstract class EightBittr {
     protected settings: IEightBittrSettings;
 
     /**
+     * Initializes a new instance of the EightBittr class.
+     * 
+     * @param settings   Settings to initialize with.
+     */
+    public constructor(settings: IEightBittrSettings) {
+        this.settings = settings;
+        this.reset();
+    }
+
+    /**
      * Resets the system.
      *
      * @param settings   Settings to reset with, if not the previous ones.
@@ -47,9 +57,6 @@ export abstract class EightBittr {
      */
     public reset(settings: IEightBittrSettings = this.settings): this {
         this.settings = settings;
-        if (this.settings === undefined) {
-            throw new Error("Cannot reset without a settings object.");
-        }
 
         this.resetComponents();
         this.resetElements(settings);

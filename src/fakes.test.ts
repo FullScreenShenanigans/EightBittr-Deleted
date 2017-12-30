@@ -26,8 +26,7 @@ export class StubEightBittr extends EightBittr {
  *
  */
 export const stubEightBittr = (): StubEightBittr =>
-    new StubEightBittr()
-        .reset({
-            height: stubHeight,
-            width: stubWidth,
-        });
+    new StubEightBittr({
+        height: stubHeight,
+        width: stubWidth,
+    });
