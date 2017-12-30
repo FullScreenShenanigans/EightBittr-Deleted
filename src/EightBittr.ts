@@ -41,7 +41,7 @@ export abstract class EightBittr {
 
     /**
      * Initializes a new instance of the EightBittr class.
-     * 
+     *
      * @param settings   Settings to initialize with.
      */
     public constructor(settings: IEightBittrSettings) {
