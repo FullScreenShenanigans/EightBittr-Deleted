@@ -10,9 +10,12 @@ An abstract class used exclusively as the parent of GameStartr.
 <!-- {{Development}} -->
 ## Development
 
+After [forking the repo from GitHub](https://help.github.com/articles/fork-a-repo/):
+
 ```
-git clone https://github.com/FullScreenShenanigans/EightBittr
+git clone https://github.com/<your-name-here>/EightBittr
 cd EightBittr
+npm install
 npm run setup
 npm run verify
 ```
