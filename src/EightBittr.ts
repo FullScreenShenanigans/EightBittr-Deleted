@@ -138,9 +138,9 @@ export abstract class EightBittr {
         return this.utilities.createElement<HTMLDivElement>("div", {
             className: "EightBitter",
             style: {
+                height: `${settings.height}px`,
                 position: "relative",
                 width: `${settings.width}px`,
-                height: `${settings.height}px`,
             },
         });
     }
